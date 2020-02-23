@@ -1,0 +1,11 @@
+.tab-content {
+  padding: 10px 0px;
+}
+:host /deep/ ngb-tabset {
+  .nav-link.active {
+    background-color: #dfdfdf;
+  }
+  a {
+    color: #333;
+  }
+}

@@ -1,0 +1,104 @@
+<section id="power">
+    <div class="row">
+
+
+        <div class="col-md-1">
+            <!-- required for floating -->
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs tabs-left flex-column">
+                <li [ngClass]="{'active': tab.active}" *ngFor="let tab of tabs">
+                    <a (click)="tabChange(tab)">{{tab.name}}</a>
+                </li>
+
+            </ul>
+        </div>
+
+        <div class="col-md-11">
+            <div class="tab-content">
+                <div class="tab-pane active"
+                    [ngClass]="{'showTab':selectedUserTab == 1, 'hideTab':selectedUserTab != 1}">
+                    <!-- Profile tab -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4>Device Details</h4>
+                        </div>
+                        <div class="panel-body">
+                            <dl>
+                                <dt class="float-left">Device Id:&nbsp;</dt>
+                                <dd>{{data?.deviceId}}</dd>
+                                <dt class="float-left">Device Name:&nbsp;</dt>
+                                <dd>{{data?.deviceName}}</dd>
+                            </dl>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <ng-container *ngIf="powerData?.length">
+                                        <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme"
+                                            [results]="powerData" [gradient]="gradient" [xAxis]="showXAxis"
+                                            [yAxis]="showYAxis" [showXAxisLabel]="showXAxisLabel"
+                                            [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel"
+                                            [yAxisLabel]="yAxisLabel" (select)="onSelect($event)">
+                                        </ngx-charts-bar-vertical>
+                                    </ng-container>
+                                </div>
+                                <div class="col-md-6">
+                                    <ng-container *ngIf="energyData?.length">
+                                        <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme"
+                                            [results]="energyData" [gradient]="gradient" [xAxis]="showXAxis"
+                                            [yAxis]="showYAxis" [showXAxisLabel]="'Energy'"
+                                            [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel"
+                                            [yAxisLabel]="yAxisLabel" (select)="onSelect($event)">
+                                        </ngx-charts-bar-vertical>
+                                    </ng-container>
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane active"
+                    [ngClass]="{'showTab':selectedUserTab == 2, 'hideTab':selectedUserTab != 2}">
+                    <!-- Change password tab -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            W.I.P
+                        </div>
+                        <div class="panel-body">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane active"
+                    [ngClass]="{'showTab':selectedUserTab == 3, 'hideTab':selectedUserTab != 3}">
+                    <!-- Admin tab -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            W.I.P
+                        </div>
+                        <div class="panel-body">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane active"
+                    [ngClass]="{'showTab':selectedUserTab == 4, 'hideTab':selectedUserTab != 4}">
+                    <!-- stripe account tab -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            W.I.P
+                        </div>
+                        <div class="panel-body">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
