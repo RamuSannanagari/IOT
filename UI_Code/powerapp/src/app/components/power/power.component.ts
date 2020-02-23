@@ -76,28 +76,32 @@ export class PowerComponent implements OnInit {
     ngOnInit() {
         const self = this;
         self.apiService.getData().subscribe((_res) => {
-            self.data = _res;
-            self.getPowerData(_res['power']);
-            self.getEnergyData(_res['energy']);
+            self.data = _res.message;
+            self.getPowerData(self.data[0]);
+            self.getEnergyData(self.data[1]);
             console.log('data', _res);
         })
     }
     getPowerData(data) {
         const self = this;
         Object.keys(data).forEach((key) => {
+            if(key !='time'&& key != 'ipAddress' && key!='tStamp'&& key!='deviceId'&& key!='deviceName' && key!='parm') {
             const obj = {};
             obj['name'] = key;
             obj['value'] = data[key];
             self.powerData.push(obj);
+            }
         })
     }
     getEnergyData(data) {
         const self = this;
         Object.keys(data).forEach((key) => {
+            if(key !='time'&& key != 'ipAddress' && key!='tStamp'&& key!='deviceId'&& key!='deviceName' && key!='parm') {
             const obj = {};
             obj['name'] = key;
             obj['value'] = data[key];
             self.energyData.push(obj);
+            }
         })
     }
     tabChange(selectedTab) {

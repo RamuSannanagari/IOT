@@ -5,7 +5,7 @@ import { catchError } from 'rxjs/operators';
     providedIn: 'root'
 })
 export class ApiService {
-    private readonly API_URL = 'assets/mock/data.json';
+    private readonly API_URL = 'http://0.0.0.0:7199';
     appConfig = {};
 
     constructor(private http: HttpClient) { }
@@ -14,7 +14,7 @@ export class ApiService {
         return Promise.reject(error);
     }
     getData() {
-        return this.http.get(this.API_URL).pipe(catchError(this.handleError))
+        return this.http.get(this.API_URL+'/search?deviceid=D206172').pipe(catchError(this.handleError))
 
     }
 
