@@ -58,7 +58,7 @@
                                           [showXAxisLabel]="showXAxisLabel"
                                           [showYAxisLabel]="showYAxisLabel"
                                           [xAxisLabel]="xAxisLabel"
-                                          [yAxisLabel]="yAxisLabel"
+                                          [yAxisLabel]="'Voltage'"
                                           [autoScale]="autoScale"
                                           [timeline]="timeline"
                                           [maxXAxisTickLength]="30"
@@ -75,7 +75,7 @@
                                       </ngx-charts-line-chart>
                                   </div> 
                                   <div class="chart" *ngIf="rphpfData?.length">
-                                      <div><b>Voltage</b></div>
+                                      <div><b>PF</b></div>
                                       <ngx-charts-line-chart
                                      
                                          
@@ -87,7 +87,7 @@
                                           [showXAxisLabel]="showXAxisLabel"
                                           [showYAxisLabel]="showYAxisLabel"
                                           [xAxisLabel]="xAxisLabel"
-                                          [yAxisLabel]="yAxisLabel"
+                                          [yAxisLabel]="'PF'"
                                           [autoScale]="autoScale"
                                           [timeline]="timeline"
                                           [xAxisTickFormatting]="tickFormatting"
@@ -114,7 +114,7 @@
                                           [showXAxisLabel]="showXAxisLabel"
                                           [showYAxisLabel]="showYAxisLabel"
                                           [xAxisLabel]="xAxisLabel"
-                                          [yAxisLabel]="yAxisLabel"
+                                          [yAxisLabel]="'Current'"
                                           [autoScale]="autoScale"
                                           [timeline]="timeline"
                                           (select)="onSelect($event)" [maxXAxisTickLength]="30"
