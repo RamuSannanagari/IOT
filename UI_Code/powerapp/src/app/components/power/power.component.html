@@ -2,9 +2,8 @@
     <div class="row">
 
 
-        <div class="col-md-1">
-            <!-- required for floating -->
-            <!-- Nav tabs -->
+        <div class="col-md-2">
+            
             <ul class="nav nav-tabs tabs-left flex-column">
                 <li [ngClass]="{'active': tab.active}" *ngFor="let tab of tabs">
                     <a (click)="tabChange(tab)">{{tab.name}}</a>
@@ -13,45 +12,144 @@
             </ul>
         </div>
 
-        <div class="col-md-11">
+        <div class="col-md-10">
             <div class="tab-content">
                 <div class="tab-pane active"
                     [ngClass]="{'showTab':selectedUserTab == 1, 'hideTab':selectedUserTab != 1}">
                     <!-- Profile tab -->
                     <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4>Device Details</h4>
-                        </div>
-                        <div class="panel-body">
-                            <dl>
-                                <dt class="float-left">Device Id:&nbsp;</dt>
-                                <dd>{{data[0]?.deviceId}}</dd>
-                                <dt class="float-left">Device Name:&nbsp;</dt>
-                                <dd>{{data[0]?.deviceName}}</dd>
-                            </dl>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <ng-container *ngIf="powerData?.length">
-                                        <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme"
-                                            [results]="powerData" [gradient]="gradient" [xAxis]="showXAxis"
-                                            [yAxis]="showYAxis" [showXAxisLabel]="showXAxisLabel"
-                                            [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel"
-                                            [yAxisLabel]="yAxisLabel" (select)="onSelect($event)">
-                                        </ngx-charts-bar-vertical>
-                                    </ng-container>
-                                </div>
-                                <div class="col-md-6">
-                                    <ng-container *ngIf="energyData?.length">
-                                        <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme"
-                                            [results]="energyData" [gradient]="gradient" [xAxis]="showXAxis"
-                                            [yAxis]="showYAxis" [showXAxisLabel]="'Energy'"
-                                            [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel"
-                                            [yAxisLabel]="yAxisLabel" (select)="onSelect($event)">
-                                        </ngx-charts-bar-vertical>
-                                    </ng-container>
-                                </div>
+                        <div class="panel-heading row align-items-center">
+                            <div class="col-3">
+                                <h4 class="text-primary mt-2 d-inline-block">OVERVIEW </h4>
+                            </div>
+                            <div class="col-9">
+
+                            <select [(ngModel)]="selectedDevice" (change)="changeDevice($event.target.value)">
+                                <option value="">Select Device</option>
+                                <option *ngFor="let device of devicesList" [value]="device">{{device}}</option>
+                              </select>
                             </div>
 
+                            
+
+                        </div>
+                        <div class="panel-body">
+
+                          <ng-container *ngIf="isLoading;else elsTpl"> 
+                              <div class="text-center loading">
+
+                            <i class="fa fa-spinner fa-spin text-primary fa-3x fa-fw"></i>
+                            <span class="sr-only">Loading...</span>
+                              </div>
+                          </ng-container>
+                          <ng-template #elsTpl>
+                            <div *ngIf="data" class="device-details">
+                                <div>Device Name : <b>{{data[0]?.deviceName}}</b></div>
+                                <div>Device id : <b>{{data[0]?.deviceId}}</b></div>
+                            </div>
+                                  <div class="chart" *ngIf="rphvolData?.length">
+                                      <div ><b>Voltage</b></div>
+                                      <ngx-charts-line-chart
+                                          [results]="rphvolData"
+                                          [gradient]="gradient"
+                                          [xAxis]="showXAxis"
+                                          [yAxis]="showYAxis"
+                                          [legend]="showLegend"
+                                          [showXAxisLabel]="showXAxisLabel"
+                                          [showYAxisLabel]="showYAxisLabel"
+                                          [xAxisLabel]="xAxisLabel"
+                                          [yAxisLabel]="yAxisLabel"
+                                          [autoScale]="autoScale"
+                                          [timeline]="timeline"
+                                          [maxXAxisTickLength]="30"
+                                          [xAxisTickFormatting]="tickFormatting">
+                                          <ng-template #tooltipTemplate let-model="model">
+                                              <div>Device: {{ model.series }}</div>
+                                              <span>{{tickFormatting(model.name)}}: {{model.value}}</span>
+                                          </ng-template>
+                                          <ng-template #seriesTooltipTemplate let-model="model">
+                                              <div>Device: {{ model[0].series }}</div>
+                                              <span>{{tickFormatting(model[0].name)}}: {{model[0].value}}</span>
+                                          </ng-template>
+  
+                                      </ngx-charts-line-chart>
+                                  </div> 
+                                  <div class="chart" *ngIf="rphpfData?.length">
+                                      <div><b>Voltage</b></div>
+                                      <ngx-charts-line-chart
+                                     
+                                         
+                                          [results]="rphpfData"
+                                          [gradient]="gradient"
+                                          [xAxis]="showXAxis"
+                                          [yAxis]="showYAxis"
+                                          [legend]="showLegend"
+                                          [showXAxisLabel]="showXAxisLabel"
+                                          [showYAxisLabel]="showYAxisLabel"
+                                          [xAxisLabel]="xAxisLabel"
+                                          [yAxisLabel]="yAxisLabel"
+                                          [autoScale]="autoScale"
+                                          [timeline]="timeline"
+                                          [xAxisTickFormatting]="tickFormatting"
+                                          (select)="onSelect($event)" [maxXAxisTickLength]="30">
+                                          <ng-template #tooltipTemplate let-model="model">
+                                              <div>Device: {{ model.series }}</div>
+                                              <span>{{tickFormatting(model.name)}}: {{model.value}}</span>
+                                          </ng-template>
+                                          <ng-template #seriesTooltipTemplate let-model="model">
+                                              <div>Device: {{ model[0].series }}</div>
+                                              <span>{{tickFormatting(model[0].name)}}: {{model[0].value}}</span>
+                                          </ng-template>
+                                  </ngx-charts-line-chart>
+                                  </div> 
+                                  <div class="chart" *ngIf="rphcuData?.length">
+                                      <div><b>Current</b></div>
+                                      <ngx-charts-line-chart
+                                      
+                                          [results]="rphcuData"
+                                          [gradient]="gradient"
+                                          [xAxis]="showXAxis"
+                                          [yAxis]="showYAxis"
+                                          [legend]="showLegend"
+                                          [showXAxisLabel]="showXAxisLabel"
+                                          [showYAxisLabel]="showYAxisLabel"
+                                          [xAxisLabel]="xAxisLabel"
+                                          [yAxisLabel]="yAxisLabel"
+                                          [autoScale]="autoScale"
+                                          [timeline]="timeline"
+                                          (select)="onSelect($event)" [maxXAxisTickLength]="30"
+                                          [xAxisTickFormatting]="tickFormatting">
+                                          <ng-template #tooltipTemplate let-model="model">
+                                              <div>Device: {{ model.series }}</div>
+                                              <span>{{tickFormatting(model.name)}}: {{model.value}}</span>
+                                          </ng-template>
+                                          <ng-template #seriesTooltipTemplate let-model="model">
+                                              <div>Device: {{ model[0].series }}</div>
+                                              <span>{{tickFormatting(model[0].name)}}: {{model[0].value}}</span>
+                                          </ng-template>
+                                  </ngx-charts-line-chart>
+                                  </div> 
+                        
+                                  <div class="table-ctnr row m-t-10" *ngIf="data">
+                                      <h4  class="m-b-10 mt-2 text-primary">Device Status</h4>
+                                  <table class="table table-striped" >
+                                      <thead>
+                                      <tr>
+                                        <th scope="col" *ngFor="let cols of tableHeaders">{{cols}}</th>
+                                      </tr>
+                                      </thead>
+                                      <tbody>
+                                      <tr *ngFor="let row of data">
+                                        
+                                       
+                                        <td *ngFor="let cols of tableHeaders">{{ row[cols] }}</td>
+                                      </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                          </ng-template>
+
+                          
 
 
 

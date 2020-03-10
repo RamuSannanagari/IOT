@@ -1,28 +1,34 @@
-<div class="container-fluid app-container">
-    <ngb-tabset [destroyOnHide]="false">
-        <ngb-tab title="33/11 KV Sub Station">
-            <ng-template ngbTabContent>
-                <div class="tab-content">
-                    <app-power></app-power>
-                </div>
 
-            </ng-template>
-        </ngb-tab>
-        <ngb-tab>
-            <ng-template ngbTabTitle>Distribution Transformer</ng-template>
-            <ng-template ngbTabContent>
-                <h1>W.I.P</h1>
-            </ng-template>
-        </ngb-tab>
-        <ngb-tab title="Solar Plant and  WindMill">
-            <ng-template ngbTabContent>
-                <h1>W.I.P</h1>
-            </ng-template>
-        </ngb-tab>
-        <ngb-tab title="Street Light">
-            <ng-template ngbTabContent>
-                <h1>W.I.P</h1>
-            </ng-template>
-        </ngb-tab>
-    </ngb-tabset>
+
+<div class="container app-container">
+    <app-header></app-header>
+    <div class="app-content pt-3">
+        <ngb-tabset [destroyOnHide]="false">
+            <ngb-tab title="33/11 KV Sub Station">
+                <ng-template ngbTabContent>
+                    <div class="tab-content">
+                        <app-power></app-power>
+                    </div>
+    
+                </ng-template>
+            </ngb-tab>
+            <ngb-tab>
+                <ng-template ngbTabTitle>Distribution Transformer</ng-template>
+                <ng-template ngbTabContent>
+                    <h1>W.I.P</h1>
+                </ng-template>
+            </ngb-tab>
+            <ngb-tab title="Solar Plant and  WindMill">
+                <ng-template ngbTabContent>
+                    <h1>W.I.P</h1>
+                </ng-template>
+            </ngb-tab>
+            <ngb-tab title="Street Light">
+                <ng-template ngbTabContent>
+                    <h1>W.I.P</h1>
+                </ng-template>
+            </ngb-tab>
+        </ngb-tabset>
+    </div>
+   
 </div>

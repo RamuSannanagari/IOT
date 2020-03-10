@@ -23,7 +23,11 @@
   &:hover,
   &.active {
     cursor: pointer;
-    background: #dfdfdf;
+    color: var(--light);
+    background: var(--primary);
+    a{
+      color: var(--light);  
+    }
   }
 }
 .tabs-left > li {
@@ -102,4 +106,27 @@
 }
 .hideTab {
   display: none !important;
+}
+
+.chart {
+  height: 400px;
+  margin-bottom: 10px;
+}
+
+.table-ctnr {
+  width: 100%;
+  overflow-x: auto;
+  margin-bottom:1rem;
+  margin-top:1rem;
+}
+.device-details {
+  margin-bottom:1rem;
+  margin-top:1rem;
+}
+
+.table-striped tbody tr:nth-of-type(odd){
+  background-color: #f7e8e0;
+}
+.loading{
+  width: calc(100% - 16.66666667%);
 }
