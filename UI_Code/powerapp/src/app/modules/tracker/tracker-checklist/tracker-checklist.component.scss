@@ -1,0 +1,13 @@
+.custom-table{
+    border: 1px solid var(--line-color);
+    thead{
+        tr{
+            background-color: var(--primary-light);   
+        }
+    }
+    tbody{
+        tr:nth-child(even){
+            background-color: var(--primary-light);
+        }
+    }
+}

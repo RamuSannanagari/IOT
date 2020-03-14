@@ -4,11 +4,16 @@
 :root{
     --header-color: #df8524;
     --body-bg-color: #f9d8a2;
+    --primary-light: rgba(178, 47, 48,0.05);
+    --line-color: #ddd;
+    --font-color: #333;
+
 }
 html,body{
     min-height: 100%;
     width: 100%;
     height: 100%;
+    color: var(--font-color);
 }
 body{
     background-color: var(--body-bg-color);

@@ -1,22 +1,6 @@
 .tab-content {
   padding: 10px 0px;
 }
-:host /deep/ ngb-tabset {
-  .nav-tabs{
-    border-bottom: 1px solid var(--primary);
-    .nav-link:hover,.nav-link.focus{
-      border-color: var(--primary);
-    }
-  }
- 
-  .nav-link.active {
-    background-color: var(--primary);
-    color: var(--light);
-  }
-  a {
-    color: #333;
-  }
-}
 
 .app-container{
   display: grid;
