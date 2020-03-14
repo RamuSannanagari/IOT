@@ -1,0 +1,32 @@
+
+.chart {
+  height: 400px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.table-ctnr {
+  width: 100%;
+  overflow-x: auto;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  transform: rotateX(180deg);
+  -ms-transform: rotateX(180deg);
+  -webkit-transform: rotateX(180deg);
+  > table {
+    transform: rotateX(180deg);
+    -ms-transform: rotateX(180deg);
+    -webkit-transform: rotateX(180deg);
+  }
+}
+.device-details {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #f7e8e0;
+}
+.loading {
+  width: calc(100% - 16.66666667%);
+}

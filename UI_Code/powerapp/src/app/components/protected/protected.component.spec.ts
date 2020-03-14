@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PowerComponent } from './power.component';
+import { ProtectedComponent } from './protected.component';
 
-describe('PowerComponent', () => {
-  let component: PowerComponent;
-  let fixture: ComponentFixture<PowerComponent>;
+describe('ProtectedComponent', () => {
+  let component: ProtectedComponent;
+  let fixture: ComponentFixture<ProtectedComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PowerComponent ]
+      declarations: [ ProtectedComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PowerComponent);
+    fixture = TestBed.createComponent(ProtectedComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

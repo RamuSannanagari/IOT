@@ -5,16 +5,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
-import { PowerComponent } from './components/power/power.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-import { HeaderComponent } from './components/header/header.component';
+import { SharedModule } from './shared/shared.module';
+import { ProtectedComponent } from './components/protected/protected.component';
 @NgModule({
     declarations: [
         AppComponent,
-        PowerComponent,
-        HeaderComponent
+        ProtectedComponent
     ],
     imports: [
         BrowserModule,
@@ -23,7 +22,8 @@ import { HeaderComponent } from './components/header/header.component';
         NgbModule,
         FormsModule,
         HttpClientModule,
-        NgxChartsModule
+        NgxChartsModule,
+        SharedModule
     ],
     providers: [],
     bootstrap: [AppComponent]
