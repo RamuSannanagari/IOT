@@ -29,7 +29,7 @@
             <div>Device Name : <b>{{data[0]?.deviceName}}</b></div>
             <div>Device id : <b>{{data[0]?.deviceId}}</b></div>
         </div>
-              <div class="chart" *ngIf="rphvolData?.length">
+              <!-- <div class="chart" *ngIf="rphvolData?.length">
                   <div ><b>Voltage</b></div>
                   <ngx-charts-line-chart
                       [results]="rphvolData"
@@ -110,7 +110,12 @@
                           <span>{{tickFormatting(model[0].name)}}: {{model[0].value}}</span>
                       </ng-template>
               </ngx-charts-line-chart>
-              </div> 
+              </div>  -->
+              <div class="chart" *ngIf="rphcuData?.length">
+                <svg [attr.height.px]="400" [id]="'test'" class="graph-container">
+                  <text x="20" y="35" class="small">Loading..</text>
+              </svg>
+              </div>
               <h4  class="m-b-10 mt-2 text-primary" *ngIf="data">Device Status</h4>
               <div class="table-ctnr row m-t-10" *ngIf="data">
                   
