@@ -1,0 +1,18 @@
+.tracker-content{
+    padding: 20px 30px;
+}
+.tracker-head{
+    border-bottom: 1px solid var(--line-color);
+    margin-bottom: 20px;
+}
+.tracker-route{
+
+}
+.tracker-list{
+    li{
+        outline: none;
+        &:hover{
+            cursor: pointer;
+        }
+    }
+}

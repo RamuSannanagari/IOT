@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tracker-route.component.scss']
 })
 export class TrackerRouteComponent implements OnInit {
-
+  today:Date = new Date();
   constructor() { }
 
   ngOnInit() {

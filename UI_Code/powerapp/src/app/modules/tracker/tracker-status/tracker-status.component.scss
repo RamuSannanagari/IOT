@@ -29,3 +29,29 @@
 .motor-status{
     background-image: linear-gradient(rgba(87, 142, 190, 0.9), rgba(87, 142, 190, 0.9)),url('./../../../../assets/images/settings.svg');
 }
+.circle{
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+}
+
+.circle-red{
+    background-color: red;
+    margin: auto;
+}
+.card-body{
+    min-height: 200px;
+}
+.image-direction{
+    position: relative;
+    width: 200px;
+    height: 200px;
+    
+}
+.sun-img{
+    position: absolute;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    left: 50%;
+    
+}

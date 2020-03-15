@@ -1,12 +1,27 @@
 
-<section class="tracker-checklist-content">
-  <div class="row align-items-center">
-    <div class="col-6"> <h3>Tracker Status:SMT01[Q3]</h3></div>
+<section class="tracker-content">
+  <div class="row align-items-center tracker-head">
+    <div class="col-6"> <h4>Tracker Status:SMT01[Q3]</h4></div>
     <div class="col-6 text-right">Last Updated Timestamp: {{today | date:'dd-MM-yyyy HH:MM:SS'}}</div>
   </div>
-  <div class="tracker-content">
-    <router-outlet></router-outlet>
+  <div class="tracker-route">
+    <div class="row">
+      <div class="col-2">
+        <ul class="list-group tracker-list">
+          <li class="list-group-item" routerLink="/tracker/home" routerLinkActive="active">Home</li>
+          <li class="list-group-item" routerLink="/tracker/status" routerLinkActive="active">Status</li>
+          <li  class="list-group-item" routerLink="/tracker/location" routerLinkActive="active">Location Setup</li>
+          <li class="list-group-item" routerLink="/tracker/control" routerLinkActive="active" >Control</li>
+          <li class="list-group-item" routerLink="/tracker/checklist" routerLinkActive="active">Check List</li>
+        </ul>
+      </div>
+      <div class="col-10">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+    
   </div>
+
   
 
   

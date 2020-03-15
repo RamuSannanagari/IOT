@@ -1,0 +1,19 @@
+.ctnr {
+    display: flex;
+    .routes-links-ctnr {
+        width: 200px;
+        margin:0 10px;
+        a {
+            color: var(--primary);
+        }
+        .nav-link.active {
+            border-bottom:2px solid var(--primary);
+        }
+        //background: var(--primary);
+    }
+}
+.content {
+   // width: 100%;
+   width: calc(100% - 200px);
+    padding:1rem;
+}

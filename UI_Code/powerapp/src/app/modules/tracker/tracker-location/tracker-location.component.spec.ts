@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PowerComponent } from './power.component';
+import { TrackerLocationComponent } from './tracker-location.component';
 
-describe('PowerComponent', () => {
-  let component: PowerComponent;
-  let fixture: ComponentFixture<PowerComponent>;
+describe('TrackerLocationComponent', () => {
+  let component: TrackerLocationComponent;
+  let fixture: ComponentFixture<TrackerLocationComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PowerComponent ]
+      declarations: [ TrackerLocationComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PowerComponent);
+    fixture = TestBed.createComponent(TrackerLocationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
