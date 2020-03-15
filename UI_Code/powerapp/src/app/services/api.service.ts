@@ -6,7 +6,7 @@ import { catchError } from 'rxjs/operators';
 })
 export class ApiService {
    private readonly API_URL = 'https://iot.smarttrak.info';
-//private readonly API_URL = '../assets/mock/data.json';
+  private readonly MOCK_CHECKLIST_URL = '../assets/mock/tracker-checklist.json';
     appConfig = {};
 
     constructor(private http: HttpClient) { }
@@ -47,6 +47,9 @@ export class ApiService {
 
     getDevicesList() {
         return this.http.get(this.API_URL+'/devicelist').pipe(catchError(this.handleError))
+    }
+    getCheckList(){
+        return this.http.get(this.MOCK_CHECKLIST_URL).pipe(catchError(this.handleError))
     }
 
 }

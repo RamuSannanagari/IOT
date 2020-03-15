@@ -1,0 +1,22 @@
+[
+    {
+        "condition":"controller",
+        "checked": true
+    },
+    {
+        "condition":"Inclinometer",
+        "checked": false
+    },
+    {
+        "condition":"Motor",
+        "checked": false
+    },
+    {
+        "condition":"VFD",
+        "checked": false
+    },
+    {
+        "condition":"actuator",
+        "checked": true
+    }
+]

@@ -1,0 +1,57 @@
+
+.card-status-top
+{
+    
+    // background-image: 
+    // url('./../../../../assets/images/settings.svg');
+    
+    background-size: contain;
+    background-position: top;
+    position: relative;
+    background-position: left;
+    padding: 20px;
+    /* background-origin: padding-box; */
+    /* background-clip: border-box; */
+    text-align: center;
+    /* width: 100%; */
+    // background-color: rgba(87, 142, 190, 1);
+    background-repeat: no-repeat;
+}
+.tracker-sun-angle{
+    background-image: linear-gradient(rgba(87, 142, 190, 0.9), rgba(87, 142, 190, 0.9)),url('./../../../../assets/images/settings.svg')
+}
+.tracker-angle{
+    background-image: linear-gradient(rgba(227, 91, 90, 0.9), rgba(227, 91, 90, 0.9)),url('./../../../../assets/images/settings.svg')
+}
+.tracker-mode{
+    background-image: linear-gradient(rgba(68, 182, 174, 0.9), rgba(68, 182, 174, 0.9)),url('./../../../../assets/images/settings.svg');
+}
+.motor-status{
+    background-image: linear-gradient(rgba(87, 142, 190, 0.9), rgba(87, 142, 190, 0.9)),url('./../../../../assets/images/settings.svg');
+}
+.circle{
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+}
+
+.circle-red{
+    background-color: red;
+    margin: auto;
+}
+.card-body{
+    min-height: 200px;
+}
+.image-direction{
+    position: relative;
+    width: 200px;
+    height: 200px;
+    
+}
+.sun-img{
+    position: absolute;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    left: 50%;
+    
+}
