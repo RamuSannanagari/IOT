@@ -52,4 +52,8 @@ export class ApiService {
         return this.http.get(this.MOCK_CHECKLIST_URL).pipe(catchError(this.handleError))
     }
 
+    getSMBDetails() {
+        return this.http.get(this.API_URL+'/smbdata_search').pipe(catchError(this.handleError))
+    }
+
 }

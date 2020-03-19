@@ -2,22 +2,7 @@ header{
     background-color: var(--header-color);
     margin: 0px;
 }
-:host /deep/ ngb-tabset {
-    .nav-tabs{
-      border-bottom: 1px solid var(--primary);
-      .nav-link:hover,.nav-link.focus{
-        border-color: var(--primary);
-      }
-    }
-   
-    .nav-item {
-     // background-color: var(--primary);
-      color: white !important;
-    }
-    a {
-      color: white;
-    }
-  }
+
   
   .navbar {
       padding-top:0;
@@ -26,10 +11,9 @@ header{
   .nav-item {
       // background-color: var(--primary);
        color: white !important;
+       cursor: pointer;
+       padding: 5px 10px;
     
-     a {
-       color: white;
-     }
      &.active {
          border-bottom: 2px solid white;;
      }

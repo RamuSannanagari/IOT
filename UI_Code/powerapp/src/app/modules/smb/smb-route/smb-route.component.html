@@ -1,0 +1,60 @@
+
+<section class="tracker-content">
+  
+  <div class="tracker-route">
+    <div class="row">
+      <div class="col-2">
+        <ul class="list-group tracker-list">
+          <!-- <li class="list-group-item" routerLink="/tracker/home" routerLinkActive="active">Home</li>
+          <li class="list-group-item" routerLink="/tracker/status" routerLinkActive="active">Status</li>
+          <li  class="list-group-item" routerLink="/tracker/location" routerLinkActive="active">Location Setup</li>
+          <li class="list-group-item" routerLink="/tracker/control" routerLinkActive="active" >Control</li>
+          <li class="list-group-item" routerLink="/tracker/checklist" routerLinkActive="active">Check List</li> -->
+          <li class="list-group-item" *ngFor="let smb of smbsList" [ngClass]="{'active':isLinkActive(smb)}" (click)="navigate(smb)" >{{smb.name}}</li>
+        </ul>
+      </div>
+      <div class="col-10">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="flex">
+              <div class="card">
+                <div class="label">DC Voltage</div>
+                <div class="val">0 <span class="unit">V</span></div>
+              </div>
+              <div class="card">
+                <div class="label">Sum of Currents</div>
+                <div class="val">0 <span class="unit">A</span></div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="label">Power</div>
+              <div class="val">0.00 <span class="unit">KW</span></div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <table class="table table-striped">
+              <thead>
+              <tr>
+                <th scope="col">String</th>
+                <th scope="col">Current [A]</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let string of smbStrings; index as i">
+                <td>{{ string.name }}</td>
+                <td class="text-center">{{ string.val }}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+       
+      </div>
+    </div>
+    
+  </div>
+
+  
+
+  
+</section>

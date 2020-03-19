@@ -12,7 +12,11 @@ const routes: Routes = [{
   {
     path:'overview',
   loadChildren: './modules/overview/overview.module#OverviewModule'},
+
+  {path:'smb',loadChildren:'./modules/smb/smb.module#SmbModule'},
+
   {path:'tracker',loadChildren:'./modules/tracker/tracker.module#TrackerModule'},
+  
   {
     path:'',
     redirectTo: '/overview',
