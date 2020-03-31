@@ -2,33 +2,44 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ProtectedComponent } from './components/protected/protected.component';
-import { AuthGuard } from './services/auth.guard';
+import { AuthTtdGuard } from './helpers/auth-ttd.guard';
+import { AuthOthersGuard } from './helpers/auth-others.guard';
+
 
 
 const routes: Routes = [{
   path: '',
   component: ProtectedComponent,
   children:[
+    
   {
     path:'overview',
-  loadChildren: './modules/overview/overview.module#OverviewModule'},
+  loadChildren: './modules/overview/overview.module#OverviewModule',
+  canActivate: [AuthTtdGuard],
+  runGuardsAndResolvers: 'always'
+},
 
-  {path:'smb',loadChildren:'./modules/smb/smb.module#SmbModule'},
+  {path:'smb',loadChildren:'./modules/smb/smb.module#SmbModule',
+  canActivate: [AuthOthersGuard],
+  runGuardsAndResolvers: 'always'
+},
 
-  {path:'tracker',loadChildren:'./modules/tracker/tracker.module#TrackerModule'},
+  {path:'tracker',loadChildren:'./modules/tracker/tracker.module#TrackerModule',
+  canActivate: [AuthOthersGuard],
+  runGuardsAndResolvers: 'always'
+},
   
-  {
-    path:'',
-    redirectTo: '/overview',
-    pathMatch:'full'
-}
+//   {
+//     path:'',
+//     redirectTo: '/overview',
+//     pathMatch:'full'
+// }
 
 ],
-canActivate: [AuthGuard],
-runGuardsAndResolvers: 'always'
+
 },
 { path: 'login', loadChildren: './modules/login/login.module#LoginModule'},
-{ path: '**', redirectTo: '/overview' }];
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

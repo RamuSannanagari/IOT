@@ -1,5 +1,5 @@
 <header>
-  <div class="row align-items-center">
+  <!-- <div class="row align-items-center">
     <div class="col-3">
       <a href="/">
         <img src="./assets/images/logo.png" />
@@ -13,22 +13,33 @@
       <img width="170" src="./assets/images/logo-2.png" />
 
   </div>
-  </div>
+  </div> -->
   <nav class="navbar navbar-expand-lg bg-primary">
-  
-  
-    
+    <div class="d-flex w-100 justify-content-space-between align-items-center">
+
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item" routerLink="/overview" routerLinkActive="active">
+      <li class="nav-item" routerLink="/overview" routerLinkActive="active" *ngIf="user.type == 'ttd'">
        Overview
       </li>
-      <li class="nav-item" routerLink="/smb" routerLinkActive="active">SMB
-      </li>
-      <li class="nav-item" routerLink="/tracker" routerLinkActive="active">
-        Tracker
-      </li>
-     
+      <ng-container *ngIf="user.type == 'others'">
+        <li class="nav-item" routerLink="/smb" routerLinkActive="active">SMB
+        </li>
+        <li class="nav-item" routerLink="/tracker" routerLinkActive="active">
+          Tracker
+        </li>
+      </ng-container>
+      
     </ul>
+    <div>
+      <ul class="list-none text-light d-flex flex-row">
+        <li class="pr-3">Hi, {{user?.firstName}} {{user?.lastName}}</li>
+        <li><i title="logout" (click)="logout()" class="fas fa-sign-out-alt" aria-hidden="true"></i></li>
+      </ul>
+    </div>
+
+    </div>
+  
+    
 </nav>
   
 </header>
