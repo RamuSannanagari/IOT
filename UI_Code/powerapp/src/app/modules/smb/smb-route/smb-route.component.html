@@ -3,7 +3,7 @@
   
   <div class="tracker-route">
     <div class="row">
-      <div class="col-2">
+      <div class="col-3">
         <ul class="list-group tracker-list">
           <!-- <li class="list-group-item" routerLink="/tracker/home" routerLinkActive="active">Home</li>
           <li class="list-group-item" routerLink="/tracker/status" routerLinkActive="active">Status</li>
@@ -13,9 +13,9 @@
           <li class="list-group-item" *ngFor="let smb of smbsList" [ngClass]="{'active':isLinkActive(smb)}" (click)="navigate(smb)" >{{smb.name}}</li>
         </ul>
       </div>
-      <div class="col-10">
+      <div class="col-9">
         <div class="row">
-          <div class="col-md-8">
+          <div class="col-md-7">
             <div class="flex">
               <div class="card">
                 <div class="label">DC Voltage</div>
@@ -31,7 +31,7 @@
               <div class="val">0.00 <span class="unit">KW</span></div>
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-5">
             <table class="table table-striped">
               <thead>
               <tr>
@@ -47,6 +47,35 @@
               </tbody>
             </table>
           </div>
+        </div>
+        <div class="row">
+          <div class="chart">
+            <div ><b>Voltage</b></div>
+            <ngx-charts-line-chart
+                [results]="results"
+                [gradient]="gradient"
+                [xAxis]="showXAxis"
+                [yAxis]="showYAxis"
+                [legend]="showLegend"
+                [showXAxisLabel]="showXAxisLabel"
+                [showYAxisLabel]="showYAxisLabel"
+                [xAxisLabel]="xAxisLabel"
+                [yAxisLabel]="'A'"
+                [autoScale]="autoScale"
+                [timeline]="timeline"
+                [maxXAxisTickLength]="30"
+                [xAxisTickFormatting]="tickFormatting">
+                <ng-template #tooltipTemplate let-model="model">
+                    <div>{{ tickFormatting(model.name)}}</div>
+                    <span>{{model.series }}: {{model.value}}</span>
+                </ng-template>
+                <!-- <ng-template #seriesTooltipTemplate let-model="model">
+                    <div>Device: {{ model[0].series }}</div>
+                    <span>{{tickFormatting(model[0].name)}}: {{model[0].value}}</span>
+                </ng-template> -->
+
+            </ngx-charts-line-chart>
+        </div> 
         </div>
        
       </div>

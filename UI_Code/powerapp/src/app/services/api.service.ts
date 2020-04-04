@@ -7,6 +7,7 @@ import { catchError } from 'rxjs/operators';
 export class ApiService {
    private readonly API_URL = 'https://iot.smarttrak.info';
   private readonly MOCK_CHECKLIST_URL = '../assets/mock/tracker-checklist.json';
+  private readonly MOCK_SMBLIST_URL = '../assets/mock/smb-list.json';
     appConfig = {};
 
     constructor(private http: HttpClient) { }
@@ -30,6 +31,7 @@ export class ApiService {
         }
         return httpParams;
     }
+
     getData() {
         //+'/aggregate_info'
         return this.http.get(this.API_URL+'/aggregate_info').pipe(catchError(this.handleError))
@@ -50,6 +52,10 @@ export class ApiService {
     }
     getCheckList(){
         return this.http.get(this.MOCK_CHECKLIST_URL).pipe(catchError(this.handleError))
+    }
+
+    getSMBList() {
+        return this.http.get(this.MOCK_SMBLIST_URL).pipe(catchError(this.handleError))
     }
 
     getSMBDetails() {
