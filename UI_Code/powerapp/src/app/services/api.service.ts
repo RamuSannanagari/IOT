@@ -61,5 +61,8 @@ export class ApiService {
     getSMBDetails() {
         return this.http.get(this.API_URL+'/smbdata_search').pipe(catchError(this.handleError))
     }
+    addLocationDetails(payload){
+        return this.http.post(this.API_URL+'/device_trackermqtt_publish',payload).pipe(catchError(this.handleError))
+    }
 
 }

@@ -1,51 +1,84 @@
 
 <div class="row">
   <div class="col-6">
-    <form class="location-form" [formGroup]="locationForm">
+    <form class="location-form" [formGroup]="locationForm" (ngSubmit)="onSubmit()">
       <h3>Timestamp</h3>
       <div class="form-group row">
         <label for="datetime" class="col-sm-3 col-form-label">Date time</label>
         <div class="col-sm-9">
-          <input  formControlName="datetime"  id="datetime" mask="d0/M0/0000 Hh:m0:s0" placeholder="dd/mm/yyyy hh:mm:ss" />
-          <button class="btn btn-primary inline-btn">Send</button>
+          <input  formControlName="datetime" [dropSpecialCharacters]="false" [validation]="true" id="datetime" mask="d0/M0/0000 Hh:m0:s0" placeholder="dd/mm/yyyy hh:mm:ss" 
+          [ngClass]="{ 'is-invalid':   f.datetime.errors }"  />
+          <div *ngIf=" f.datetime.errors" class="invalid-feedback">
+            <div *ngIf="f.datetime.errors['Mask error']">Datetime should be proper format (ex: 01/02/2020 01:12:50)</div>
+            
+            <div *ngIf="submitted && f.datetime.errors.required">Datetime is required</div>
+        </div>  
         </div>
+        
       </div>
       <h3>Location</h3>
       <div class="form-group row">
         <label for="latitude" class="col-sm-3 col-form-label">Latitude</label>
         <div class="col-sm-9">
-          <input type="text" mask="separator" thousandSeparator="," formControlName="latitude" id="latitude" placeholder="Latitude">
-          <button class="btn btn-primary inline-btn">Send</button>
+          <input type="text" mask="separator" thousandSeparator="," formControlName="latitude" id="latitude" placeholder="Latitude"
+          [ngClass]="{ 'is-invalid': submitted && f.latitude.errors }" />
+          <div *ngIf="submitted && f.latitude.errors" class="invalid-feedback">
+            <div *ngIf="f.latitude.errors.required">Latitude is required</div>
+        </div>  
+          
         </div>
       </div>
       <div class="form-group row">
         <label for="longitude"  class="col-sm-3 col-form-label">Longitude</label>
         <div class="col-sm-9">
-          <input type="text" mask="separator" thousandSeparator="," formControlName="longitude" id="longitude" placeholder="longitude">
-          <button class="btn btn-primary inline-btn">Send</button>
+          <input type="text" mask="separator" thousandSeparator="," formControlName="longitude" id="longitude" placeholder="longitude"
+          [ngClass]="{ 'is-invalid': submitted && f.longitude.errors }" />
+          <div *ngIf="submitted && f.longitude.errors" class="invalid-feedback">
+            <div *ngIf="f.longitude.errors.required">Longitude is required</div>
+        </div> 
+          
         </div>
       </div>
       <div class="form-group row">
         <label for="timezone" class="col-sm-3 col-form-label">TimeZone</label>
         <div class="col-sm-9">
-          <input type="text" mask="separator" thousandSeparator="," formControlName="timezone"  id="timezone" placeholder="Timezone">
-          <button class="btn btn-primary inline-btn">Send</button>
+          <input type="text" mask="separator" thousandSeparator="," formControlName="timezone"  id="timezone" placeholder="Timezone"
+          [ngClass]="{ 'is-invalid': submitted && f.timezone.errors }" />
+          <div *ngIf="submitted && f.timezone.errors" class="invalid-feedback">
+            <div *ngIf="f.timezone.errors.required">Timezone is required</div>
+        </div> 
+          
         </div>
       </div>
       <h3>Tracker Limits</h3>
       <div class="form-group row">
         <label for="eastLimit" class="col-sm-3 col-form-label">East Limit</label>
         <div class="col-sm-9">
-          <input type="text" mask="separator" thousandSeparator="," formControlName="eastLimit"  id="eastLimit" placeholder="East Limit">
-          <button class="btn btn-primary inline-btn">Send</button>
+          <input type="text" mask="separator" thousandSeparator="," formControlName="eastLimit"  id="eastLimit" placeholder="East Limit"
+          [ngClass]="{ 'is-invalid': submitted && f.eastLimit.errors }" />
+          <div *ngIf="submitted && f.eastLimit.errors" class="invalid-feedback">
+            <div *ngIf="f.eastLimit.errors.required">Eastlimit is required</div>
+        </div> 
+          
+          
         </div>
       </div>
       <div class="form-group row">
         <label for="westLimit" class="col-sm-3 col-form-label">West Limit</label>
         <div class="col-sm-9">
-          <input type="text" mask="separator" thousandSeparator="," formControlName="westLimit"  id="westLimit" placeholder="West Limit">
-          <button class="btn btn-primary inline-btn">Send</button>
+          <input type="text" mask="separator" thousandSeparator="," formControlName="westLimit"  id="westLimit" placeholder="West Limit"
+          [ngClass]="{ 'is-invalid': submitted && f.westLimit.errors }" />
+          <div *ngIf="submitted && f.westLimit.errors" class="invalid-feedback">
+            <div *ngIf="f.westLimit.errors.required">Westlimit is required</div>
+        </div> 
+          
         </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-9 col-sm-offset-3">
+          <button class="btn btn-primary " [disabled]="locationForm.invalid" >Send</button>
+        </div>
+
       </div>
       
     </form>
