@@ -55,7 +55,7 @@ export class ApiService {
     }
 
     getSMBList() {
-        return this.http.get(this.MOCK_SMBLIST_URL).pipe(catchError(this.handleError))
+        return this.http.get(this.API_URL+'/smb_devicelist').pipe(catchError(this.handleError))
     }
 
     getSMBDetails() {

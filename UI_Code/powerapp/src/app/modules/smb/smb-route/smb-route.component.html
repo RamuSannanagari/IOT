@@ -10,7 +10,7 @@
           <li  class="list-group-item" routerLink="/tracker/location" routerLinkActive="active">Location Setup</li>
           <li class="list-group-item" routerLink="/tracker/control" routerLinkActive="active" >Control</li>
           <li class="list-group-item" routerLink="/tracker/checklist" routerLinkActive="active">Check List</li> -->
-          <li class="list-group-item" *ngFor="let smb of smbsList" [ngClass]="{'active':isLinkActive(smb)}" (click)="navigate(smb)" >{{smb.name}}</li>
+          <li class="list-group-item" *ngFor="let smb of smbsList" [ngClass]="{'active':isLinkActive(smb)}" (click)="navigate(smb)" >{{smb}}</li>
         </ul>
       </div>
       <div class="col-9">

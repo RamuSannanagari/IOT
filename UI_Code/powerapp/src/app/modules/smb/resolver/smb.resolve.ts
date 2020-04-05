@@ -11,7 +11,7 @@ export class SMBResolver implements Resolve<any> {
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const self = this;
         return self.api.getSMBList().toPromise().then((response) => {
-            return response;
+            return response.message;
         }, (error) => {
             return null;
         });

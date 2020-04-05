@@ -107,7 +107,7 @@ export class SmbRouteComponent implements OnInit {
     })
      this.activatedRoute.queryParams.subscribe((params: Params) => {
       if (!params['type']) {
-          this.router.navigate(['/smb'], { queryParams: { type: this.smbsList[0].id } })
+          this.router.navigate(['/smb'], { queryParams: { type: this.smbsList[0]} })
       } else {
         this.smbSelected = params['type']
         this.getSMBDetails();
@@ -130,13 +130,13 @@ export class SmbRouteComponent implements OnInit {
     const self = this;
     if (item) {
       
-        self.router.navigate(['/smb'], { queryParams: { type: item.id } });
+        self.router.navigate(['/smb'], { queryParams: { type: item} });
     } else {
         self.router.navigate(['/smb']);
     }
 }
 isLinkActive(item): boolean {
-    if (item['id'] == this.smbSelected) {
+    if (item == this.smbSelected) {
         return true;
     } else {
         return false;
