@@ -13,7 +13,7 @@ export class AuthTtdGuard implements CanActivate {
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const currentUser = this.authenticationService.currentUserValue;
-        if (currentUser && currentUser.type == 'ttd') {
+        if (currentUser && currentUser.category == 'ttd') {
             // authorised so return true
             return true;
         }

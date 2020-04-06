@@ -9,10 +9,15 @@ import { NgxMaskModule } from 'ngx-mask'
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { TrackerControlComponent } from './tracker-control/tracker-control.component';
 import { TrackerHomeComponent } from './tracker-home/tracker-home.component';
+import { TrackerListComponent } from './tracker-list/tracker-list.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path:'list',
+    component: TrackerListComponent
+  },
+  {
+    path: ':id',
     component: TrackerRouteComponent,
     children:[
       {
@@ -45,7 +50,7 @@ const routes: Routes = [
   
 ];
 @NgModule({
-  declarations: [TrackerChecklistComponent, TrackerStatusComponent, TrackerRouteComponent, TrackerLocationComponent, TrackerControlComponent, TrackerHomeComponent],
+  declarations: [TrackerChecklistComponent, TrackerStatusComponent, TrackerRouteComponent, TrackerLocationComponent, TrackerControlComponent, TrackerHomeComponent, TrackerListComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

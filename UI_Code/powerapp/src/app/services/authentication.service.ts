@@ -3,13 +3,18 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from '../models';
+import { ApiService } from './api.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
     private currentUserSubject: BehaviorSubject<User>;
     public currentUser: Observable<User>;
+    private readonly API_URL = 'https://iot.smarttrak.info';
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient,
+        private apiService: ApiService
+        
+        ) {
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
         this.currentUser = this.currentUserSubject.asObservable();
     }
@@ -27,14 +32,22 @@ export class AuthenticationService {
         type:'others'
       }
       localStorage.setItem('currentUser', JSON.stringify(user));
-              this.currentUserSubject.next(user);
+            //  this.currentUserSubject.next(user);
     }
 
     login(username: string, password: string) {
-        return this.http.post<any>(`/users/authenticate`, { username, password })
+        const payload = {
+            username: username,
+            password: password
+        }
+        // return this.apiService.login(payload).subscribe((user)=>{
+        //     localStorage.setItem('currentUser', JSON.stringify(user));
+        //             this.currentUserSubject.next(user);
+        // })
+        return this.http.post<any>(this.API_URL+'/authenticate',payload)
             .pipe(map(user => {
                 // login successful if there's a jwt token in the response
-                if (user && user.token) {
+                if (user ) {
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('currentUser', JSON.stringify(user));
                     this.currentUserSubject.next(user);

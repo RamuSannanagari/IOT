@@ -37,35 +37,78 @@ export class TrackerLocationComponent implements OnInit {
   onSubmit(){
     const self =this;
     self.submitted = true;
-    if(this.locationForm.valid){
-     const res = self.generatePayload(self.locationForm.value);
-     self.apiService.addLocationDetails(res).subscribe((_res)=>{
-       console.log('_res',_res);
-       self.alertService.success('Added success fully');
-       self.locationForm.reset();
-     })
+    // if(this.locationForm.valid){
+    //  const res = self.generatePayload(self.locationForm.value);
+    //  self.apiService.addLocationDetails(res).subscribe((_res)=>{
+    //    console.log('_res',_res);
+    //    self.alertService.success('Added success fully');
+    //    self.locationForm.reset();
+    //  })
      
-    }
+    // }
     console.log('s',this.locationForm.value);
   }
-  generatePayload(formData){
-    const datetime = formData['datetime'].split(' ');
+  onSend(control){
+    const self = this;
+    const payload = self.generatePayload(control);
+    console.log('pay',payload)
+
+    
+  }
+  generatePayload(control){
+    const self = this;
+    const controlVal = self.locationForm.controls[control].value;
+    let payload ={};
+    switch(control){
+      case  'datetime':
+      const datetime = controlVal.split(' ');
     const datesArray = datetime[0].split('/');
     const timesArray = datetime[1].split(':');
-    const payload ={
-      "r1":`Write:lat_${formData['latitude']}`,
-      "r2":`Write:lon_${formData['longitude']}`,
-      "r3":`Write:sec_${timesArray[2]}`,
-      "r4":`Write:min_${timesArray[1]}`,
-      "r5":`Write:hr_${timesArray[0]}`,
-      "r6":`Write:date_${datesArray[0]}`,
-      "r7":`Write:month_${datesArray[1]}`,
-      "r8":`Write:year_${datesArray[2]}`,
-      "r9":`Write:zone_${formData['timezone']}`,
-      "r10":`Write:manual_east`,
-      "r11":`Write:manual_west`
-
+      payload ={
+        "r1":`WRITE:sec_${timesArray[2]}`,
+      "r2":`WRITE:min_${timesArray[1]}`,
+      "r3":`WRITE:hr_${timesArray[0]}`,
+      "r4":`WRITE:date_${datesArray[0]}`,
+      "r5":`WRITE:month_${datesArray[1]}`,
+      "r6":`WRITE:year_${datesArray[2]}`,
+      }
+      break;
+      case 'latitude':
+        payload = {
+          "r1": `WRITE:LAT_${controlVal}`
+        }
+        break;
+        case 'longitude':
+          payload = {
+            "r1": `WRITE:LONGITUDE_${controlVal}`
+          }
+          break;
+          case 'timezone':
+          payload = {
+            "r1": `WRITE:TIMEZONE_${controlVal}`
+          }
+          break;
+          case 'eastLimit':
+          payload = {
+            "r1": `WRITE:REVLIMIT_${controlVal}`
+          }
+          break;
+          case 'westLimit':
+          payload = {
+            "r1": `WRITE:FWDLIMIT_${controlVal}`
+          }
+          break;
     }
+    
+    // const payload ={
+    //   "r1":`WRITE:lat_${formData['latitude']}`,
+    //   "r2":`WRITE:lon_${formData['longitude']}`,
+      
+    //   "r9":`WRITE:zone_${formData['timezone']}`,
+    //   "r10":`WRITE:manual_east`,
+    //   "r11":`WRITE:manual_west`
+
+    // }
     return payload;
   }
 

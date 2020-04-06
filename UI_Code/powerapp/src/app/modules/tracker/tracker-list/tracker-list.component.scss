@@ -1,0 +1,12 @@
+.tracker-list{
+    padding: 20px 30px;
+}
+.custom-table{
+    tbody{
+        tr{
+            &:hover{
+                cursor: pointer;
+            }
+        }
+    }
+}

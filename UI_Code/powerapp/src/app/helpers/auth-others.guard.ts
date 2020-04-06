@@ -13,7 +13,7 @@ export class AuthOthersGuard implements CanActivate {
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const currentUser = this.authenticationService.currentUserValue;
-        if (currentUser && currentUser.type == 'others') {
+        if (currentUser && currentUser.category == 'other') {
             // authorised so return true
             return true;
         }

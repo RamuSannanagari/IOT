@@ -1,0 +1,41 @@
+<section class="tracker-list">
+
+
+  
+  <div class="row">
+    <div class="col-12">
+      <table class="table custom-table">
+        <thead>
+          <tr>
+            <th scope="col">Trackers</th>
+            <th scope="col">Sun Angle</th>
+            <th scope="col">Tracker Angle</th>
+            <th scope="col">Last updated</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of trackerList" [routerLink]="['/tracker',item.id,'home']">
+            <td>{{item?.name}}</td>
+            <td>
+              {{item?.sunAngle}}
+              
+              </td>
+              <td>
+                {{item?.trackerAngle}}
+                
+                </td>
+                <td>
+                  {{item.lastUpdated | date:'dd-MM-yyyy HH:MM:SS'}}
+                </td>
+          </tr>
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+
+  
+
+
+</section>

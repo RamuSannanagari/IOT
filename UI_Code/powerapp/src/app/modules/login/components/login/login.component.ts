@@ -47,25 +47,26 @@ export class LoginComponent implements OnInit {
         }
 
         this.loading = true;
-        this.authenticationService.fakeLogin(this.f.username.value, this.f.password.value);
-        const user = this.authenticationService.currentUserValue;
-        if(user.type == 'ttd'){
-          this.router.navigate([this.returnUrl ||  'overview']);
-        }
-        else{
-          this.router.navigate([ this.returnUrl || 'smb']);
-        }
+        
+      
                    // this.router.navigate([this.returnUrl]);
-        // this.authenticationService.login(this.f.username.value, this.f.password.value)
-        //     .pipe(first())
-        //     .subscribe(
-        //         data => {
-        //             this.router.navigate([this.returnUrl]);
-        //         },
-        //         error => {
-        //           // added temporarily
-        //           this.router.navigate([this.returnUrl]);
-        //             this.loading = false;
-        //         });
+        this.authenticationService.login(this.f.username.value, this.f.password.value)
+            .pipe(first())
+            .subscribe(
+                data => {
+                    const user = this.authenticationService.currentUserValue;
+                    if(user.category == 'ttd'){
+                      this.router.navigate([this.returnUrl ||  'overview']);
+                    }
+                    else{
+                      this.router.navigate([ this.returnUrl || 'smb']);
+                    }
+                    
+                },
+                error => {
+                  // added temporarily
+                  this.router.navigate([this.returnUrl]);
+                    this.loading = false;
+                });
     }
 }

@@ -64,5 +64,8 @@ export class ApiService {
     addLocationDetails(payload){
         return this.http.post(this.API_URL+'/device_trackermqtt_publish',payload).pipe(catchError(this.handleError))
     }
+    login(payload){
+        return this.http.post(this.API_URL+'/authenticate',payload).pipe(catchError(this.handleError))
+    }
 
 }
