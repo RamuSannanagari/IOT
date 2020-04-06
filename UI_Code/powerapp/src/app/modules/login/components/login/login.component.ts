@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { AlertService } from 'src/app/services/alert.service';
 @Component({templateUrl: 'login.component.html',
 styleUrls:['./login.component.scss']})
 export class LoginComponent implements OnInit {
@@ -16,6 +17,7 @@ export class LoginComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private authenticationService: AuthenticationService,
+        private alertService: AlertService
         
     ) {
         // redirect to home if already logged in
@@ -65,7 +67,8 @@ export class LoginComponent implements OnInit {
                 },
                 error => {
                   // added temporarily
-                  this.router.navigate([this.returnUrl]);
+                  console.log('err',error)
+                  this.alertService.error('username & password is incorrect')
                     this.loading = false;
                 });
     }

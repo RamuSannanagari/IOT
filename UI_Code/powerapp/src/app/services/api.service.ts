@@ -67,5 +67,9 @@ export class ApiService {
     login(payload){
         return this.http.post(this.API_URL+'/authenticate',payload).pipe(catchError(this.handleError))
     }
+    getTrackerList(){
+        
+        return this.http.get(this.API_URL+'/device_trackermqtt_search').pipe(catchError(this.handleError))
+    }
 
 }

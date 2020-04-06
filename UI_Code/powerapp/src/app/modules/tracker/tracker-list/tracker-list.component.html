@@ -14,18 +14,18 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of trackerList" [routerLink]="['/tracker',item.id,'home']">
-            <td>{{item?.name}}</td>
+          <tr *ngFor="let item of trackerList" [routerLink]="['/tracker',item.Tracker,'home']">
+            <td>{{item?.Tracker}}</td>
             <td>
-              {{item?.sunAngle}}
+              {{item?.Sun_Angle}}
               
               </td>
               <td>
-                {{item?.trackerAngle}}
+                {{item?.Tracker_Angle}}
                 
                 </td>
                 <td>
-                  {{item.lastUpdated | date:'dd-MM-yyyy HH:MM:SS'}}
+                  {{item.time | date:'dd-MM-yyyy HH:MM:SS'}}
                 </td>
           </tr>
           

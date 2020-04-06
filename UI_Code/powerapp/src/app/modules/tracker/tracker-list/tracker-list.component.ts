@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-tracker-list',
@@ -22,9 +23,18 @@ export class TrackerListComponent implements OnInit {
       lastUpdated: new Date()
     },
   ];
-  constructor() { }
+  constructor(
+    private apiService: ApiService
+  ) { }
 
   ngOnInit() {
+    this.getTrackerList();
+  }
+  getTrackerList(){
+    const self = this;
+    self.apiService.getTrackerList().subscribe((_res)=>{
+      self.trackerList = _res['message']?_res['message']:[];
+    })
   }
 
 }
