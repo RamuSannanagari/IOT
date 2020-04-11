@@ -8,7 +8,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from './shared/shared.module';
 import { ProtectedComponent } from './components/protected/protected.component';
-import { SmbRouteComponent } from './modules/smb/smb-route/smb-route.component';
 @NgModule({
     declarations: [
         AppComponent,
