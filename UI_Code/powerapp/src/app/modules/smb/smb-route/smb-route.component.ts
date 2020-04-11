@@ -119,7 +119,7 @@ export class SmbRouteComponent implements OnInit {
   }
 
   getSMBDetails() {
-    this.api.getSMBDetails().subscribe(res=>{
+    this.api.getSMBDetails(this.smbSelected).subscribe(res=>{
       this.smbData = res.message
     },err=>{
       this.smbData =[];

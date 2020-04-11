@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ProtectedComponent } from './components/protected/protected.component';
 import { AuthTtdGuard } from './helpers/auth-ttd.guard';
 import { AuthOthersGuard } from './helpers/auth-others.guard';
+import { RedirectGuardService } from './helpers/redirect-guard.service';
 
 
 
@@ -13,8 +14,8 @@ const routes: Routes = [{
   children:[
     
   {
-    path:'overview',
-  loadChildren: './modules/overview/overview.module#OverviewModule',
+    path:'station',
+  loadChildren: './modules/sub-station/sub-station.module#SubStationModule',
   canActivate: [AuthTtdGuard],
   runGuardsAndResolvers: 'always'
 },
@@ -28,6 +29,7 @@ const routes: Routes = [{
   canActivate: [AuthOthersGuard],
   runGuardsAndResolvers: 'always'
 },
+{ path : '' , pathMatch: 'full' , redirectTo : '' , canActivate : [RedirectGuardService]}, 
   
 //   {
 //     path:'',

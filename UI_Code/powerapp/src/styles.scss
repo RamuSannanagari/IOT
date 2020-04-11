@@ -19,5 +19,9 @@ body{
     background-color: var(--body-bg-color);
 }
 
+*:focus{
+    outline: none;
+}
+
 
 
