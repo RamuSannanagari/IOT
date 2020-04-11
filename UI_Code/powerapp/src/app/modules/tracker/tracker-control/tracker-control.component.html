@@ -1,11 +1,11 @@
 <div class="row">
-  <div class="col-3">
-    <button class="btn btn-secondary btn-lg btn-block">Auto</button>
+  <div class="col-md-3 col-xs-12">
+    <button class="btn btn-secondary btn-lg btn-block" (click)="onSend('AUTOMODE')" >Auto</button>
     <button class="btn btn-secondary btn-lg btn-block">SUN Track Start</button>
-    <button class="btn btn-danger btn-lg btn-block" >Stop</button>
-    <button class="btn btn-primary btn-lg btn-block">Manual</button>
+    <button class="btn btn-danger btn-lg btn-block" (click)="onSend('STOP')">Stop</button>
+    <button class="btn btn-primary btn-lg btn-block" (click)="onSend('MANUALMODE')">Manual</button>
   </div>
-  <div class="col-5 d-flex align-items-center justify-content-center">
+  <div class="col-md-5 col-xs-12 d-flex align-items-center justify-content-center">
     <div class="text-center image-direction">
       <img #sun class="sun-img" src="./assets/images/sun.png" />
       <img src="./assets/images/direction.png" />
@@ -13,16 +13,16 @@
     </div>
     
   </div>
-  <div class="col-4">
+  <div class="col-md-4 col-xs-12">
     <div class="border p-3">
       <h4>Tracker Status</h4>
       <div class="row">
         <div class="col-6 mb-1">Sun Angle:</div>
-        <div class="col-6 mb-1">45.56</div>
+        <div class="col-6 mb-1">{{trackerDetails?.Sun_Angle}}</div>
         <div class="col-6 mb-1">Tracker Angle:</div>
-        <div class="col-6 mb-1">37.56</div>
+        <div class="col-6 mb-1">{{trackerDetails?.Tracker_Angle || '-'}}</div>
         <div class="col-6 mb-1">Tracker Mode:</div>
-        <div class="col-6 mb-1">Auto West</div>
+        <div class="col-6 mb-1">{{trackerDetails?.Mode}}</div>
         <div class="col-12">
           <p class="small mb-1">*21 - Auto West/ 22 - Auto East/20 - Stop</p>
         </div>

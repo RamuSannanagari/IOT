@@ -10,6 +10,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { TrackerControlComponent } from './tracker-control/tracker-control.component';
 import { TrackerHomeComponent } from './tracker-home/tracker-home.component';
 import { TrackerListComponent } from './tracker-list/tracker-list.component';
+import { TrackerResolver } from './resolver/tracker.resolve';
 
 const routes: Routes = [
   {
@@ -19,6 +20,7 @@ const routes: Routes = [
   {
     path: ':id',
     component: TrackerRouteComponent,
+    resolve: { trackerInfo: TrackerResolver },
     children:[
       {
         path: 'status',

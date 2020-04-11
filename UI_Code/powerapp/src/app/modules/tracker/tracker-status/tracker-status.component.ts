@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { TrackerService } from 'src/app/services/tracker.service';
 
 @Component({
   selector: 'app-tracker-status',
@@ -10,8 +11,15 @@ export class TrackerStatusComponent implements OnInit {
   @ViewChild('sun1') sun1:ElementRef; 
   angle:number = -40;
   angle1:number = -55;
-  constructor() { }
+  trackerDetails:any;
+  constructor(
+    private trackerServie:TrackerService
+  ) { }
   ngOnInit() {
+    this.trackerDetails = this.trackerServie.getTrackerData();
+    this.angle = this.trackerDetails['Sun_Angle']? (-1)*this.trackerDetails['Sun_Angle']+5 : -40;
+    this.angle1 = this.trackerDetails['Tracker_Angle']? (-1)*this.trackerDetails['Tracker_Angle']+5 : -55;
+    console.log('s',this.trackerDetails);
     // this.sun.nativeElement.style.width = '200px'
     this.drawCircle( 120, this.angle, 0, 0);
     this.drawCircle1( 120, this.angle1, 0, 0);

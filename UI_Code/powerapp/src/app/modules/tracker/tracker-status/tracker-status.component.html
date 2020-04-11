@@ -1,9 +1,9 @@
 <div class="row">
-  <div class="col-3">
+  <div class="col-md-3 col-sm-6 col-xs-12">
     <div class="card " >
       <div class="card-status-top tracker-sun-angle text-center">
         <h3 class="text-light">Sun Angle</h3><br/>
-        <h2 class="text-light">43.43</h2>
+        <h2 class="text-light">{{trackerDetails?.Sun_Angle}}</h2>
       </div>
       
       <div class="card-body">
@@ -17,11 +17,11 @@
     </div>
   </div>
   
-  <div class="col-3">
+  <div class="col-md-3 col-sm-6 col-xs-12">
     <div class="card " >
       <div class="card-status-top tracker-angle text-center">
         <h3 class="text-light">Tracker Angle</h3><br/>
-        <h2 class="text-light">43.43</h2>
+        <h2 class="text-light">{{trackerDetails?.Tracker_Angle}}</h2>
       </div>
       
       <div class="card-body">
@@ -33,11 +33,11 @@
       </div>
     </div>
   </div>
-  <div class="col-3">
+  <div class="col-md-3 col-sm-6 col-xs-12">
     <div class="card " >
       <div class="card-status-top tracker-mode text-center">
         <h3 class="text-light">Tracker Mode</h3><br/>
-        <h2 class="text-light">43.43</h2>
+        <h2 class="text-light">{{trackerDetails?.Mode}}</h2>
       </div>
       
       <div class="card-body">
@@ -48,7 +48,7 @@
       </div>
     </div>
   </div>
-  <div class="col-3">
+  <div class="col-md-3 col-sm-6 col-xs-12">
     <div class="card " >
       <div class="card-status-top motor-status text-center">
         <h3 class="text-light">Motor Status</h3><br/>

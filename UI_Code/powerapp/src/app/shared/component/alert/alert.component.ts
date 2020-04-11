@@ -17,6 +17,9 @@ export class AlertComponent implements OnInit, OnDestroy {
                 switch (message && message.type) {
                     case 'success':
                         message.cssClass = 'alert alert-success';
+                        setTimeout(() => {
+                            this.message='';
+                        }, 5000);
                         break;
                     case 'error':
                         message.cssClass = 'alert alert-danger';
