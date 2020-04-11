@@ -13,18 +13,23 @@ export class TrackerLocationComponent implements OnInit {
   locationForm: FormGroup;
   submitted = false;
   trackerDetails:any;
+  subscriptions:any={};
   constructor(
     private formBuilder: FormBuilder,
     private apiService: ApiService,
     private alertService: AlertService,
-    private trackerServie: TrackerService
+    private trackerService: TrackerService
   ) { }
 
   ngOnInit() {
     const self = this;
     self.buildForm();
-    self.trackerDetails = self.trackerServie.getTrackerData();
+    self.subscriptions['tracker'] = self.trackerService.currentTrackerSubject.subscribe((_res)=>{
+      console.log('_res',_res);
+      self.trackerDetails = _res;
     self.setData(self.trackerDetails);
+    })
+    
     
   }
   setData(data){
@@ -78,9 +83,11 @@ export class TrackerLocationComponent implements OnInit {
   onSend(control) {
     const self = this;
     const payload = self.generatePayload(control);
-    self.apiService.addLocationDetails(payload).subscribe((_res) => {
+    self.subscriptions['locationDetails'] = self.apiService.addLocationDetails(payload).subscribe((_res) => {
       console.log('_res', _res);
       self.alertService.success('Added success fully');
+      self.trackerService.setTrackerData(self.trackerDetails);
+      
       
     })
     console.log('pay', payload)
@@ -91,68 +98,62 @@ export class TrackerLocationComponent implements OnInit {
     const self = this;
     const controlVal = self.locationForm.controls[control].value;
     let payload = {};
-    const id = self.trackerServie.getTrackerId();
+    const id = self.trackerService.getTrackerId();
 
     switch (control) {
-
-      // case 'datetime':
-      //   const datetime = controlVal.split(' ');
-      //   const datesArray = datetime[0].split('/');
-      //   const timesArray = datetime[1].split(':');
-
-      //   payload = {
-      //    [id]: `WRITE:sec_${timesArray[2]}`,
-      //     "R2": `WRITE:min_${timesArray[1]}`,
-      //     "r3": `WRITE:hr_${timesArray[0]}`,
-      //     "r4": `WRITE:date_${datesArray[0]}`,
-      //     "r5": `WRITE:month_${datesArray[1]}`,
-      //     "r6": `WRITE:year_${datesArray[2]}`,
-      //   }
-      //   break;
         case 'date':
         payload = {
          [id]: `${id} WRITE:DATE_${controlVal}`
         }
+        self.trackerDetails['DATE'] = controlVal;
         break;
         case 'month':
         payload = {
          [id]: `${id} WRITE:MONTH_${controlVal}`
         }
+        self.trackerDetails['MONTH'] = controlVal;
         break;
         case 'year':
         payload = {
          [id]: `${id} WRITE:YEAR_${controlVal}`
         }
+        self.trackerDetails['YEAR'] = controlVal;
         break;
         case 'hour':
         payload = {
          [id]: `${id} WRITE:HR_${controlVal}`
         }
+        self.trackerDetails['HR'] = controlVal;
         break;
         case 'min':
         payload = {
          [id]: `${id} WRITE:MIN_${controlVal}`
         }
+        self.trackerDetails['MIN'] = controlVal;
         break;
         case 'sec':
         payload = {
          [id]: `${id} WRITE:SEC_${controlVal}`
         }
+        self.trackerDetails['SEC'] = controlVal;
         break;
       case 'latitude':
         payload = {
          [id]: `${id} WRITE:LAT_${controlVal}`
         }
+        self.trackerDetails['Latitude'] = controlVal;
         break;
       case 'longitude':
         payload = {
-         [id]: `${id} WRITE:Longitude_${controlVal}`
+         [id]: `${id} WRITE:LONGITUDE_${controlVal}`
         }
+        self.trackerDetails['Longitude'] = controlVal;
         break;
       case 'timezone':
         payload = {
          [id]: `${id} WRITE:TIMEZONE_${controlVal}`
         }
+        self.trackerDetails['TimeZone'] = controlVal;
         break;
       case 'eastLimit':
         payload = {
@@ -176,6 +177,12 @@ export class TrackerLocationComponent implements OnInit {
 
     // }
     return payload;
+  }
+  ngOnDestroy(){
+    const self = this;
+    Object.keys(self.subscriptions).forEach(e=>{
+      self.subscriptions[e].unsubscribe()
+    })
   }
 
 }

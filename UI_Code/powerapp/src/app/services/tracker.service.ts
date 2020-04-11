@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -6,9 +7,17 @@ import { Injectable } from '@angular/core';
 export class TrackerService {
   trackerDetails:any={};
   id:any;
-  constructor() { }
+   currentTrackerSubject: BehaviorSubject<any>;
+    public currentTracker: Observable<any>;
+  constructor() { 
+    this.currentTrackerSubject = new BehaviorSubject<any>({});
+    this.currentTracker = this.currentTrackerSubject.asObservable();
+  }
+  public get currentTrackerDetails(): any {
+    return this.currentTrackerDetails.value;
+}
   setTrackerData(data:any){
-    this.trackerDetails = data;
+    this.currentTrackerSubject.next(data);
   }
   getTrackerData(){
     return this.trackerDetails;

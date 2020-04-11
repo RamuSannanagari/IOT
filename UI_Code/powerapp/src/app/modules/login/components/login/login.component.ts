@@ -58,10 +58,10 @@ export class LoginComponent implements OnInit {
                 data => {
                     const user = this.authenticationService.currentUserValue;
                     if(user.category == 'ttd'){
-                      this.router.navigate([this.returnUrl ||  'overview']);
+                      this.router.navigate([  'station']);
                     }
                     else{
-                      this.router.navigate([ this.returnUrl || 'smb']);
+                      this.router.navigate([  'smb']);
                     }
                     
                 },

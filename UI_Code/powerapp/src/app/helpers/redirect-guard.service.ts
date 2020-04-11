@@ -17,7 +17,7 @@ export class RedirectGuardService implements CanActivate {
         // authorised so return true
         this.router.navigate(['/station']);
         return true;
-    } else if(currentUser && currentUser.category == 'ttd') {
+    } else if(currentUser && currentUser.category == 'other') {
         this.router.navigate(['/smb']);
         return true;
     }

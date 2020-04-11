@@ -12,6 +12,7 @@ export class TrackerControlComponent implements OnInit {
   @ViewChild('sun') sun:ElementRef; 
   angle:number = -45;
   trackerDetails:any;
+  subscriptions:any={};
   constructor(
     private elementRef: ElementRef,
     private trackerService: TrackerService,
@@ -20,10 +21,13 @@ export class TrackerControlComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.trackerDetails = this.trackerService.getTrackerData();
-    // this.sun.nativeElement.style.width = '200px'
-    this.angle = this.trackerDetails['Sun_Angle']? (-1)*this.trackerDetails['Sun_Angle']+5 : -40;
-    this.drawCircle( 120, this.angle, 0, 0)
+    
+    this.subscriptions['tracker'] = this.trackerService.currentTrackerSubject.subscribe((_res)=>{
+      this.trackerDetails = _res;
+      this.angle = this.trackerDetails['Sun_Angle']? (-1)*this.trackerDetails['Sun_Angle']+5 : -40;
+      this.drawCircle( 120, this.angle, 0, 0)
+    })
+  
   }
   draw(){
     
@@ -45,7 +49,7 @@ export class TrackerControlComponent implements OnInit {
  onSend(val) {
   const self = this;
   const payload = self.generatePayload(val);
-  self.apiService.addLocationDetails(payload).subscribe((_res) => {
+  self.subscriptions['locations'] = self.apiService.addLocationDetails(payload).subscribe((_res) => {
     console.log('_res', _res);
     self.alertService.success('All changes saved success fully');
   })
@@ -57,6 +61,12 @@ generatePayload(val) {
     [id]: `${id} WRITE:${val}`
   };
   return payload;
+}
+ngOnDestroy(){
+  const self = this;
+  Object.keys(self.subscriptions).forEach(e=>{
+    self.subscriptions[e].unsubscribe()
+  })
 }
 
 }

@@ -12,17 +12,20 @@ export class TrackerStatusComponent implements OnInit {
   angle:number = -40;
   angle1:number = -55;
   trackerDetails:any;
+  subscriptions:any={};
   constructor(
     private trackerServie:TrackerService
   ) { }
   ngOnInit() {
-    this.trackerDetails = this.trackerServie.getTrackerData();
-    this.angle = this.trackerDetails['Sun_Angle']? (-1)*this.trackerDetails['Sun_Angle']+5 : -40;
-    this.angle1 = this.trackerDetails['Tracker_Angle']? (-1)*this.trackerDetails['Tracker_Angle']+5 : -55;
-    console.log('s',this.trackerDetails);
-    // this.sun.nativeElement.style.width = '200px'
-    this.drawCircle( 120, this.angle, 0, 0);
-    this.drawCircle1( 120, this.angle1, 0, 0);
+    this.subscriptions['tracker'] = this.trackerServie.currentTrackerSubject.subscribe((_res)=>{
+      
+      this.trackerDetails = _res;
+      this.angle = this.trackerDetails['Sun_Angle']? (-1)*this.trackerDetails['Sun_Angle']+5 : -40;
+      this.angle1 = this.trackerDetails['Tracker_Angle']? (-1)*this.trackerDetails['Tracker_Angle']+5 : -55;
+      this.drawCircle( 120, this.angle, 0, 0);
+      this.drawCircle1( 120, this.angle1, 0, 0);
+    })
+   
   }
   drawCircle(  radius, angle, x, y) {
     
@@ -47,6 +50,12 @@ export class TrackerStatusComponent implements OnInit {
     this.sun1.nativeElement.style.marginTop = pointy + y + 'px';
     
 
+}
+ngOnDestroy(){
+  const self = this;
+  Object.keys(self.subscriptions).forEach(e=>{
+    self.subscriptions[e].unsubscribe()
+  })
 }
 
 }

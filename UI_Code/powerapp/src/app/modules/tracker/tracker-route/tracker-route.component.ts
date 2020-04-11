@@ -13,11 +13,12 @@ export class TrackerRouteComponent implements OnInit {
   id:any;
   subscriptions:any={}
   trackerDetails:any;
+  apiInterval:any;
   constructor(
     private route: Router,
     private activatedRoute: ActivatedRoute,
     private apiService: ApiService,
-    private trackerServie: TrackerService
+    private trackerService: TrackerService
   ) { 
 
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
@@ -26,22 +27,35 @@ export class TrackerRouteComponent implements OnInit {
 
   ngOnInit() {
     const self = this;
-    self.subscriptions['activatedRouteData'] = self.activatedRoute.data.subscribe(data => {
-      if (data.hasOwnProperty('trackerInfo')) {
-          const trackerList:any[] =  data['trackerInfo'] ||[];
-          self.trackerDetails = trackerList.find((_item)=>{
-            return _item['Tracker'] == self.id
-          })
-          self.trackerServie.setTrackerData(self.trackerDetails);
-          self.trackerServie.setTrackerId(self.id);
-          console.log('tra',self.trackerDetails);
-          console.log('id',self.id);
-      }
-  })
-    // const payload = {"R1":["R1 READ:GETALL","R1 READ:SUN","R1 READ:RTC","R1 READ:LAT","R1 READ:LONGITUDE","R1 READ:TRACKER","R1 READ:ZONE","R1 READ:MODE","R1 READ:HR","R1 READ:MIN","R1 READ:SEC","R1 READ:DATE","R1 READ:MONTH","R1 READ:YEAR","R1 READ:DAY"]};
-    // this.apiService.addLocationDetails(payload).subscribe((_res)=>{
-    //   console.log('_res',_res);
-    // })
+    self.subscriptions['tracker'] = this.trackerService.currentTrackerSubject.subscribe((_res)=>{
+      self.trackerDetails = _res;
+    });
+    const apiIntervalTime:number = self.apiService.getApiIntervalTime();
+    self.apiInterval = setInterval(()=>{
+      const params = {
+        Tracker: this.id
+    }
+       self.apiService.getTrackerData(params).toPromise().then((response) => { 
+        if(Array.isArray(response.message) && response.message.length){
+          this.trackerService.setTrackerData(response.message[0])
+        }
+  
+    }, (error) => {
+  
+    });
+    },apiIntervalTime);
+    self.trackerService.setTrackerId(self.id);
+  
   }
+  ngOnDestroy(){
+    const self = this;
+    Object.keys(self.subscriptions).forEach(e=>{
+      self.subscriptions[e].unsubscribe()
+    })
+    if(self.apiInterval){
+      clearInterval(self.apiInterval);
+    }
+  }
+  
 
 }

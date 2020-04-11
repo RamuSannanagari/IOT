@@ -8,21 +8,9 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class TrackerListComponent implements OnInit {
   trackerList:Array<any>=[
-    {
-      name:'SMT01',
-      id:'S1',
-      sunAngle:'43.5',
-      trackerAngle:'22.8',
-      lastUpdated: new Date()
-    },
-    {
-      name:'SMT02',
-      id:'S2',
-      sunAngle:'33.5',
-      trackerAngle:'19.8',
-      lastUpdated: new Date()
-    },
+   
   ];
+  subscriptions:any={};
   constructor(
     private apiService: ApiService
   ) { }
@@ -32,9 +20,15 @@ export class TrackerListComponent implements OnInit {
   }
   getTrackerList(){
     const self = this;
-    self.apiService.getTrackerList().subscribe((_res)=>{
+    self.subscriptions['trackerList'] = self.apiService.getTrackerList().subscribe((_res)=>{
       self.trackerList = _res['message']?_res['message']:[];
     })
   }
-
+  ngOnDestroy(){
+    const self = this;
+    Object.keys(self.subscriptions).forEach(e=>{
+      self.subscriptions[e].unsubscribe()
+    })
+    
+  }
 }
