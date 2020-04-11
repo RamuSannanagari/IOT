@@ -37,8 +37,8 @@ export class TrackerLocationComponent implements OnInit {
       latitude: data['Latitude'] || '',
       longitude: data['Longitude'] || '',
       timezone: data['TimeZone'] || '',
-      eastLimit: data['REVLIMIT'] || '',
-      westLimit: data['FWDLIMIT'] || '',
+      eastLimit: data['East_Limit'] || '',
+      westLimit: data['West_Limit'] || '',
       date: data['DATE'] ||'',
       month: data['MONTH'] ||'',
       year: data['YEAR'] ||'',
@@ -85,7 +85,7 @@ export class TrackerLocationComponent implements OnInit {
     const payload = self.generatePayload(control);
     self.subscriptions['locationDetails'] = self.apiService.addLocationDetails(payload).subscribe((_res) => {
       console.log('_res', _res);
-      self.alertService.success('Added success fully');
+      self.alertService.success('All changes saved successfully');
       self.trackerService.setTrackerData(self.trackerDetails);
       
       
@@ -158,12 +158,14 @@ export class TrackerLocationComponent implements OnInit {
       case 'eastLimit':
         payload = {
          [id]: `${id} WRITE:REVLIMIT_${controlVal}`
-        }
+        };
+        self.trackerDetails['East_Limit'] = controlVal;
         break;
       case 'westLimit':
         payload = {
          [id]: `${id} WRITE:FWDLIMIT_${controlVal}`
-        }
+        };
+        self.trackerDetails['West_Limit'] = controlVal;
         break;
     }
 

@@ -1,9 +1,13 @@
 <div class="row">
   <div class="col-md-3 col-xs-12">
     <button class="btn btn-secondary btn-lg btn-block" (click)="onSend('AUTOMODE')" >Auto</button>
-    <button class="btn btn-secondary btn-lg btn-block">SUN Track Start</button>
+    <!-- <button class="btn btn-secondary btn-lg btn-block">SUN Track Start</button> -->
     <button class="btn btn-danger btn-lg btn-block" (click)="onSend('STOP')">Stop</button>
-    <button class="btn btn-primary btn-lg btn-block" (click)="onSend('MANUALMODE')">Manual</button>
+    <button class="btn btn-primary btn-lg btn-block" (click)="showBtngrp = true;" >Manual</button>
+    <div class="btn-group btn-block" *ngIf="showBtngrp" role="group" >
+      <button type="button" (click)="onSend('MANUALMODE');onSend('EAST');" class="btn btn-secondary">East</button>
+      <button type="button" (click)="onSend('MANUALMODE');onSend('WEST');" class="btn btn-secondary">West</button>
+    </div>
   </div>
   <div class="col-md-5 col-xs-12 d-flex align-items-center justify-content-center">
     <div class="text-center image-direction">
@@ -23,14 +27,14 @@
         <div class="col-6 mb-1">{{trackerDetails?.Tracker_Angle || '-'}}</div>
         <div class="col-6 mb-1">Tracker Mode:</div>
         <div class="col-6 mb-1">{{trackerDetails?.Mode}}</div>
-        <div class="col-12">
+        <!-- <div class="col-12">
           <p class="small mb-1">*21 - Auto West/ 22 - Auto East/20 - Stop</p>
-        </div>
+        </div> -->
         <div class="col-6 mb-1">Motor Status:</div>
         <div class="col-6 mb-1">Stop</div>
-        <div class="col-12">
+        <!-- <div class="col-12">
           <p class="small">*1 - Run/0 - Stop</p>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

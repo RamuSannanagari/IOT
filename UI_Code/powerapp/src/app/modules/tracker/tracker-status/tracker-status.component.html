@@ -52,11 +52,11 @@
     <div class="card " >
       <div class="card-status-top motor-status text-center">
         <h3 class="text-light">Motor Status</h3><br/>
-        <h2 class="text-light"><b>Stop</b></h2>
+        <h2 class="text-light"><b>{{trackerDetails?.Motor_Status}}</b></h2>
       </div>
       
       <div class="card-body d-flex">
-        <div class="circle circle-red"></div>
+        <div class="circle " [ngClass]="{'circle-red':(trackerDetails?.Motor_Status == 'Stop'),'circle-green':(trackerDetails?.Motor_Status != 'Stop')}"></div>
         
       </div>
     </div>

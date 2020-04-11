@@ -34,11 +34,17 @@
     width: 90px;
     height: 90px;
     border-radius: 50%;
+    margin: auto;
+    margin-top: 30px;
 }
 
 .circle-red{
     background-color: red;
-    margin: auto;
+    
+}
+.circle-green{
+    background-color: green;
+    
 }
 .card-body{
     min-height: 240px;

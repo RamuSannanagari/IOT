@@ -12,6 +12,7 @@ export class TrackerControlComponent implements OnInit {
   @ViewChild('sun') sun:ElementRef; 
   angle:number = -45;
   trackerDetails:any;
+  showBtngrp:boolean= false;
   subscriptions:any={};
   constructor(
     private elementRef: ElementRef,

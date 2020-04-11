@@ -74,7 +74,7 @@ export class ApiService {
     }
     getTrackerList(){
          
-        return this.http.get(this.API_URL+'/device_trackermqtt_search').pipe(catchError(this.handleError))
+        return this.http.get(this.API_URL+'/device_trackermqtt_data').pipe(catchError(this.handleError))
     }
     getApiIntervalTime(){
         return (8*60*1000);
