@@ -43,24 +43,38 @@ autoScale = true;
 devicesList=[];
 isLoading:boolean = false;
 selectedDevice='';
-  rphvolData:any;
-   rphcuData:any;
-    rphpfData:any
+rphvolData:any;
+rphcuData:any;
+rphpfData:any
+
+refreshInterval;
+refreshDuration=8*60*1000;
+subscription={};
 
   onSelect(event) {
       console.log(event);
   }
 
   ngOnInit() {
+    this.subscription['getDevicesList'] = this.apiService.getDevicesList().subscribe(res=>{
+        this.devicesList = res.message;
+    })
+    this.setRefreshInterval();
+  }
 
+  setRefreshInterval() {
+    if(this.refreshInterval)
+     clearInterval(this.refreshInterval);
+    this.refreshInterval = setInterval(()=>{
+        if(this.selectedDevice)
+            this.getDeviceData()
+    },this.refreshDuration); 
      
-      this.apiService.getDevicesList().subscribe(res=>{
-          this.devicesList = res.message;
-      })
   }
  
   changeDevice(val) {
-      this.getDeviceData();
+    this.setRefreshInterval();
+    this.getDeviceData()
   }
   tickFormatting(value): string {
       const date = new Date(value);
@@ -70,7 +84,7 @@ selectedDevice='';
   getDeviceData() {
        const self = this;
        self.isLoading = true;
-      self.apiService.getDeviceData(this.selectedDevice).subscribe((_res) => {
+       this.subscription['getDeviceData'] = self.apiService.getDeviceData(this.selectedDevice).subscribe((_res) => {
          self.isLoading = false;
           self.data = _res.message;
           self.rphvolData = self.formatData('rphvol');
@@ -123,6 +137,15 @@ selectedDevice='';
       console.log($event);
   }
 
+
+  ngOnDestroy() {
+      if(this.refreshInterval)
+        clearInterval(this.refreshInterval);
+
+        Object.keys(this.subscription).map(key=>{
+            this.subscription[key].unsubscribe();
+        })
+  }
 
  
    

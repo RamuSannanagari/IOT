@@ -13,66 +13,95 @@ export class SmbRouteComponent implements OnInit {
   smbSelected='smb1';
   smbData=[];
   subscriptions={};
-  smbStrings=[{name:"String01",val:10},{name:"String02",val:14.56},{name:"String03",val:10},{name:"String04",val:10},
-  {name:"String05",val:10},{name:"String06",val:10},{name:"String07",val:10},{name:"String08",val:10},{name:"String09",val:10},
-  {name:"String10",val:10},{name:"String11",val:10},{name:"String12",val:10},{name:"String13",val:10}];
+  smbStrings=[
+    {name:"String1",vol:'vol1'},
+    {name:"String2",vol:'vol2'},
+    {name:"String3",vol:'vol3'},
+    {name:"String4",vol:'vol4'},
+    {name:"String5",vol:'vol5'},
+    {name:"String6",vol:'vol6'},
+    {name:"String7",vol:'vol7'},
+    {name:"String8",vol:'vol8'},
+    {name:"String9",vol:'vol9'},
+    {name:"String10",vol:'vol10'},
+    {name:"String11",vol:'vol11'},
+    {name:"String12",vol:'vol12'},
+    {name:"String13",vol:'vol13'}];
 
-  results = [
+    stringValues=[];
+    dashboardValues={
+      'power':0,
+      'current':0,
+      'voltage':0
+    };
+  results=[];
+  chartFormat = [
     {
-      "name": "String 01",
+      "name": "String1",
       "series": [
-        {
-          "name": "2020-03-25 14:53:27.360542927",
-          "value": 10
-        },
-        {
-          "name": "2020-03-26 14:53:37.360542927",
-          "value": 5
-        },{
-          "name": "2020-03-27 14:53:47.360542927",
-          "value": 10
-        },
-        {
-          "name": "2020-03-28 14:53:57.360542927",
-          "value": 5
-        },
-        {
-          "name": "2020-03-29 14:54:27.360542927",
-          "value": 10
-        },
-        {
-          "name": "2020-03-30 14:55:37.360542927",
-          "value": 5
-        }
       ]
     },
   
     {
-      "name": "String 02",
+      "name": "String2",
       "series": [
-        {
-          "name": "2020-03-25 14:53:27.360542927",
-          "value": 4
-        },
-        {
-          "name": "2020-03-26 14:53:37.360542927",
-          "value": 5
-        },{
-          "name": "2020-03-27 14:53:47.360542927",
-          "value": 3
-        },
-        {
-          "name": "2020-03-28 14:53:57.360542927",
-          "value": 6
-        },
-        {
-          "name": "2020-03-29 14:54:27.360542927",
-          "value": 6
-        },
-        {
-          "name": "2020-03-30 14:55:37.360542927",
-          "value": 3
-        }
+      ]
+    },
+    {
+      "name": "String3",
+      "series": [
+      ]
+    },
+  
+    {
+      "name": "String4",
+      "series": [
+      ]
+    },{
+      "name": "String5",
+      "series": [
+      ]
+    },
+  
+    {
+      "name": "String6",
+      "series": [
+      ]
+    },{
+      "name": "String7",
+      "series": [
+      ]
+    },
+  
+    {
+      "name": "String8",
+      "series": [
+      ]
+    },
+   {
+      "name": "String9",
+      "series": [
+      ]
+    },
+  
+    {
+      "name": "String10",
+      "series": [
+      ]
+    },{
+      "name": "String11",
+      "series": [
+      ]
+    },
+    {
+      "name": "String12",
+      "series": [
+      ]
+    },
+  
+    {
+      "name": "String13",
+      "series": [
       ]
     }
   ]
@@ -93,6 +122,13 @@ export class SmbRouteComponent implements OnInit {
     // options
  
  timeline = true;
+
+ refreshInterval;
+refreshDuration=8*60*1000;
+subscription={};
+
+dash
+
   constructor( private router: Router,
     private api:ApiService,
     private activatedRoute: ActivatedRoute) { }
@@ -112,18 +148,81 @@ export class SmbRouteComponent implements OnInit {
         this.smbSelected = params['type']
         this.getSMBDetails();
       }
-
-     
-     
   })
+
+  this.setRefreshInterval();
+  }
+
+  setRefreshInterval() {
+    if(this.refreshInterval)
+     clearInterval(this.refreshInterval);
+    this.refreshInterval = setInterval(()=>{
+      if(this.smbSelected)
+       this.getSMBDetails();
+    },this.refreshDuration); 
+     
   }
 
   getSMBDetails() {
-    this.api.getSMBDetails(this.smbSelected).subscribe(res=>{
-      this.smbData = res.message
+    this.subscriptions['getSMBDetails'] = this.api.getSMBDetails(this.smbSelected).subscribe(res=>{
+      this.smbData = res.message;
+      this.formatData();
+      if(this.smbData.length>0)
+        this.getDashboardValues(this.smbData[this.smbData.length-1])
+
     },err=>{
       this.smbData =[];
     })
+  }
+
+  getDashboardValues(val) {
+    let dashboard:any = this.deepClone(this.smbStrings);
+    Object.keys(val).map((key)=>{
+      let index = dashboard.findIndex((v)=> v.name===key||v.vol===key);
+      if(index>-1) {
+        dashboard[index][dashboard[index].name==key?'current':'voltage']=val[key];
+      }
+
+    });
+    this.stringValues = dashboard;
+
+    this.stringValues.map((v)=>{
+      this.dashboardValues['current']+=v.current;
+      this.dashboardValues['voltage']+=v.voltage;
+    })
+    this.dashboardValues['power']=this.dashboardValues['current']*this.dashboardValues['voltage'];
+
+  }
+  
+  formatData() {
+    let chartFormat:any = this.deepClone(this.chartFormat);
+    this.smbData.forEach((val)=>{
+      chartFormat=  this.pushValuesTochartFormat(val,chartFormat);
+
+    })
+
+    this.results = chartFormat;
+  }
+
+  pushValuesTochartFormat(val,chartFormat) {
+   
+    Object.keys(val).map((key)=>{
+      let index = chartFormat.findIndex((series)=> series.name===key);
+      if(index>-1) {
+        chartFormat[index].series.push({
+          name:val['time'],
+          value:val[key]
+        })
+      }
+
+    });
+
+    return chartFormat
+
+  }
+
+  deepClone(val){
+   return JSON.parse(JSON.stringify(val))
   }
 
   navigate(item) {
@@ -146,6 +245,15 @@ isLinkActive(item): boolean {
 tickFormatting(value): string {
   const date = new Date(value);
   return date.toLocaleString();
+}
+
+ngOnDestroy() {
+  if(this.refreshInterval)
+    clearInterval(this.refreshInterval);
+
+    Object.keys(this.subscription).map(key=>{
+        this.subscription[key].unsubscribe();
+    })
 }
 
 }
