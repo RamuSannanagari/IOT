@@ -13,12 +13,14 @@ export class TrackerResolver implements Resolve<any> {
         ) { }
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const self = this;
-        const params = {
-            Tracker: route.paramMap.get('id')
+        const id = route.paramMap.get('id');
+        const payload ={
+            [id]: `${id} READ:GETALL`
+            
         }
         
-            return self.api.getTrackerData(params).toPromise().then((response) => {
-                
+            return self.api.addLocationDetails(payload).toPromise().then((response) => {
+                console.log('re',response.message);
                 this.trackerService.setTrackerData(response.message[0])
                 return response.message;
             }, (error) => {

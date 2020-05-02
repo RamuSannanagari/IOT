@@ -25,13 +25,13 @@ export class TrackerLocationComponent implements OnInit {
     const self = this;
     self.buildForm();
     self.subscriptions['tracker'] = self.trackerService.currentTrackerSubject.subscribe((_res)=>{
-      console.log('_res',_res);
       self.trackerDetails = _res;
     self.setData(self.trackerDetails);
     })
     
     
   }
+  // prefill formdata with API response
   setData(data){
     this.locationForm.patchValue({
       latitude: data['Latitude'] || '',
@@ -47,6 +47,7 @@ export class TrackerLocationComponent implements OnInit {
       sec: data['SEC'] ||'',
     })
   }
+  // build form
   buildForm() {
     const self = this;
     self.locationForm = self.formBuilder.group({
@@ -68,32 +69,28 @@ export class TrackerLocationComponent implements OnInit {
   get f() { return this.locationForm.controls; }
   onSubmit() {
     const self = this;
-    self.submitted = true;
-    // if(this.locationForm.valid){
-    //  const res = self.generatePayload(self.locationForm.value);
-    //  self.apiService.addLocationDetails(res).subscribe((_res)=>{
-    //    console.log('_res',_res);
-    //    self.alertService.success('Added success fully');
-    //    self.locationForm.reset();
-    //  })
-
-    // }
-    console.log('s', this.locationForm.value);
+    self.submitted = true; 
   }
+  // send payload & call API
   onSend(control) {
     const self = this;
     const payload = self.generatePayload(control);
     self.subscriptions['locationDetails'] = self.apiService.addLocationDetails(payload).subscribe((_res) => {
-      console.log('_res', _res);
       self.alertService.success('All changes saved successfully');
       self.trackerService.setTrackerData(self.trackerDetails);
-      
-      
+    },(err)=>{
+      let errMsg = 'Something went wrong! Please try again.';
+      if(err['error'] && err['error']['message']){
+        errMsg = err['error']['message'];
+      }
+      self.alertService.error(errMsg)
+      console.log('err',err);
     })
-    console.log('pay', payload)
+    
 
 
   }
+  // generating payload according to API requirement
   generatePayload(control) {
     const self = this;
     const controlVal = self.locationForm.controls[control].value;
@@ -157,27 +154,17 @@ export class TrackerLocationComponent implements OnInit {
         break;
       case 'eastLimit':
         payload = {
-         [id]: `${id} WRITE:REVLIMIT_${controlVal}`
+         [id]: `${id} WRITE:ELIM_${controlVal}`
         };
         self.trackerDetails['East_Limit'] = controlVal;
         break;
       case 'westLimit':
         payload = {
-         [id]: `${id} WRITE:FWDLIMIT_${controlVal}`
+         [id]: `${id} WRITE:WLIM_${controlVal}`
         };
         self.trackerDetails['West_Limit'] = controlVal;
         break;
     }
-
-    // const payload ={
-    //  [id]:`WRITE:lat_${formData['latitude']}`,
-    //   "r2":`WRITE:lon_${formData['longitude']}`,
-
-    //   "r9":`WRITE:zone_${formData['timezone']}`,
-    //   "r10":`WRITE:manual_east`,
-    //   "r11":`WRITE:manual_west`
-
-    // }
     return payload;
   }
   ngOnDestroy(){

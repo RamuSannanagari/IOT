@@ -22,7 +22,7 @@ export class TrackerRouteComponent implements OnInit {
   ) { 
 
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
-    console.log('id',this.id);
+    
   }
 
   ngOnInit() {
@@ -31,11 +31,13 @@ export class TrackerRouteComponent implements OnInit {
       self.trackerDetails = _res;
     });
     const apiIntervalTime:number = self.apiService.getApiIntervalTime();
+    // Get tracker information every 8 mins
     self.apiInterval = setInterval(()=>{
-      const params = {
-        Tracker: this.id
+      const payload ={
+        [this.id]: `${this.id} READ:GETALL`
+        
     }
-       self.apiService.getTrackerData(params).toPromise().then((response) => { 
+       self.apiService.addLocationDetails(payload).toPromise().then((response) => { 
         if(Array.isArray(response.message) && response.message.length){
           this.trackerService.setTrackerData(response.message[0])
         }

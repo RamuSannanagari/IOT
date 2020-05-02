@@ -27,6 +27,10 @@
           <div *ngIf="submitted && f.date.errors" class="invalid-feedback">
             <div *ngIf="f.date.errors.required">Date is required</div>
         </div>  
+        
+        <div *ngIf="trackerDetails?.DATE == 'ERR' && (f.date.value == 'ERR' || f.date.value == '')" class="custom-err">
+          <div >Device has error</div>
+      </div>  
           
         </div>
       </div>
@@ -38,7 +42,10 @@
           <button class="btn btn-primary inline-btn" [disabled]="f.month.errors" (click)="onSend('month')" >Send</button>
           <div *ngIf="submitted && f.month.errors" class="invalid-feedback">
             <div *ngIf="f.month.errors.required">Month is required</div>
-        </div>  
+        </div> 
+        <div *ngIf="trackerDetails?.MONTH == 'ERR' && (f.month.value == 'ERR' || f.month.value == '')" class="custom-err">
+          <div >Device has error</div>
+      </div>   
           
         </div>
       </div>
@@ -51,6 +58,9 @@
           <div *ngIf="submitted && f.year.errors" class="invalid-feedback">
             <div *ngIf="f.year.errors.required">Year is required</div>
         </div>  
+        <div *ngIf="trackerDetails?.YEAR == 'ERR' && (f.year.value == 'ERR' || f.year.value == '')" class="custom-err">
+          <div >Device has error</div>
+      </div>   
           
         </div>
       </div>
@@ -62,7 +72,10 @@
           <button class="btn btn-primary inline-btn" [disabled]="f.hour.errors" (click)="onSend('hour')" >Send</button>
           <div *ngIf="submitted && f.hour.errors" class="invalid-feedback">
             <div *ngIf="f.hour.errors.required">Hour is required</div>
-        </div>  
+        </div> 
+        <div *ngIf="trackerDetails?.HR == 'ERR' && (f.hour.value == 'ERR' || f.hour.value == '')" class="custom-err">
+          <div >Device has error</div>
+      </div>   
           
         </div>
       </div>
@@ -74,7 +87,10 @@
           <button class="btn btn-primary inline-btn" [disabled]="f.min.errors" (click)="onSend('min')" >Send</button>
           <div *ngIf="submitted && f.min.errors" class="invalid-feedback">
             <div *ngIf="f.min.errors.required">Minute is required</div>
-        </div>  
+        </div> 
+        <div *ngIf="trackerDetails?.MIN == 'ERR' && (f.min.value == 'ERR' || f.min.value == '')" class="custom-err">
+          <div >Device has error</div>
+      </div>    
           
         </div>
       </div>
@@ -87,6 +103,9 @@
           <div *ngIf="submitted && f.sec.errors" class="invalid-feedback">
             <div *ngIf="f.sec.errors.required">Seconds is required</div>
         </div>  
+        <div *ngIf="trackerDetails?.SEC == 'ERR' && (f.sec.value == 'ERR' || f.sec.value == '')" class="custom-err">
+          <div >Device has error</div>
+      </div>  
           
         </div>
       </div>
@@ -123,7 +142,7 @@
     <div class="form-group row">
       <label for="timezone" class="col-sm-3 col-form-label">TimeZone</label>
       <div class="col-sm-9">
-        <input type="text" mask="separator" thousandSeparator="," formControlName="timezone"  id="timezone" placeholder="Timezone"
+        <input type="text" mask="separator" [dropSpecialCharacters]="false" thousandSeparator="," formControlName="timezone"  id="timezone" placeholder="Timezone"
         [ngClass]="{ 'is-invalid': submitted && f.timezone.errors }" />
         <button class="btn btn-primary inline-btn" [disabled]="f.timezone.errors" (click)="onSend('timezone')" >Send</button>
         <div *ngIf="submitted && f.timezone.errors" class="invalid-feedback">
@@ -136,7 +155,7 @@
     <div class="form-group row">
       <label for="eastLimit" class="col-sm-3 col-form-label">East Limit</label>
       <div class="col-sm-9">
-        <input type="text" mask="separator" thousandSeparator="," formControlName="eastLimit"  id="eastLimit" placeholder="East Limit"
+        <input type="text" [dropSpecialCharacters]="false" mask="separator" thousandSeparator="," formControlName="eastLimit"  id="eastLimit" placeholder="East Limit"
         [ngClass]="{ 'is-invalid': submitted && f.eastLimit.errors }" />
         <button class="btn btn-primary inline-btn" [disabled]="f.eastLimit.errors" (click)="onSend('eastLimit')" >Send</button>
         <div *ngIf="submitted && f.eastLimit.errors" class="invalid-feedback">
@@ -149,7 +168,7 @@
     <div class="form-group row">
       <label for="westLimit" class="col-sm-3 col-form-label">West Limit</label>
       <div class="col-sm-9">
-        <input type="text" mask="separator" thousandSeparator="," formControlName="westLimit"  id="westLimit" placeholder="West Limit"
+        <input type="text" mask="separator" [dropSpecialCharacters]="false" thousandSeparator="," formControlName="westLimit"  id="westLimit" placeholder="West Limit"
         [ngClass]="{ 'is-invalid': submitted && f.westLimit.errors }" />
         <button class="btn btn-primary inline-btn" [disabled]="f.westLimit.errors" (click)="onSend('westLimit')" >Send</button>
         <div *ngIf="submitted && f.westLimit.errors" class="invalid-feedback">
