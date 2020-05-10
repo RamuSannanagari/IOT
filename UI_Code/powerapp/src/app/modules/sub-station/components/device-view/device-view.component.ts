@@ -43,6 +43,8 @@ autoScale = true;
 devicesList=[];
 isLoading:boolean = false;
 selectedDevice='';
+selectedSubstation='';
+subSationList=[];
 rphvolData:any;
 rphcuData:any;
 rphpfData:any
@@ -56,12 +58,25 @@ subscription={};
   }
 
   ngOnInit() {
-    this.subscription['getDevicesList'] = this.apiService.getDevicesList().subscribe(res=>{
-        this.devicesList = res.message;
-    })
+    this.getSubstationList();
     this.setRefreshInterval();
   }
 
+  //get substation list
+  getSubstationList() {
+    this.subscription['getsubstationList'] = this.apiService.getSubStationList('SUB_STATIONS').subscribe(res=>{
+        this.subSationList = res.SUB_STATIONS;
+    })
+  }
+
+  //get device list from selected substation
+  getDeviceList() {
+    this.subscription['getDevicesList'] = this.apiService.getDevicesList(this.selectedSubstation).subscribe(res=>{
+        this.devicesList = res.devices;
+    })
+  }
+
+  //refresh data every 8mins
   setRefreshInterval() {
     if(this.refreshInterval)
      clearInterval(this.refreshInterval);
@@ -72,10 +87,22 @@ subscription={};
      
   }
  
+  //change device callback
   changeDevice(val) {
     this.setRefreshInterval();
     this.getDeviceData()
   }
+  
+  //change substation callback
+  changeSubStation(val){
+    this.selectedDevice="";
+    this.devicesList=[];
+    if(this.selectedSubstation) {
+        this.getDeviceList()
+    }
+  }
+
+
   tickFormatting(value): string {
       const date = new Date(value);
       return date.toLocaleString();
@@ -83,9 +110,8 @@ subscription={};
   
   getDeviceData() {
        const self = this;
-       self.isLoading = true;
+       
        this.subscription['getDeviceData'] = self.apiService.getDeviceData(this.selectedDevice).subscribe((_res) => {
-         self.isLoading = false;
           self.data = _res.message;
           self.rphvolData = self.formatData('rphvol');
           self.rphcuData = self.formatData('rphcu');
@@ -94,8 +120,6 @@ subscription={};
           self.tableValues = self.data?Object.values(self.data[self.data.length-1]):[];
 
           self.tableHeaders =  self.tableHeaders.sort((a,b)=>{ if(a=='deviceId'|| a=='deviceName') return -1; else if(b=='deviceId'||b=='deviceName') return 1; else return 0})
-      },()=>{
-          self.isLoading = false;
       })
   }
 
