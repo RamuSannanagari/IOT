@@ -16,6 +16,8 @@ export class DeviceViewComponent implements OnInit {
   tableValues: unknown[];
   
   constructor(private apiService: ApiService) {
+      this.maxDate = new Date();
+      this.selectedDate = new Date();
   }
 
 
@@ -52,12 +54,15 @@ rphpfData:any
 refreshInterval;
 refreshDuration=8*60*1000;
 subscription={};
+selectedDate;
+maxDate
 
   onSelect(event) {
       console.log(event);
   }
 
   ngOnInit() {
+      
     this.getSubstationList();
     this.setRefreshInterval();
   }
@@ -107,6 +112,10 @@ subscription={};
   tickFormatting(value): string {
       const date = new Date(value);
       return date.toLocaleString();
+    }
+
+    onDateChange(date) {
+        console.log(date)
     }
   
   getDeviceData() {

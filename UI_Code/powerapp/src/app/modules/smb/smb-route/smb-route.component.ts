@@ -141,16 +141,8 @@ dash
             self.smbsList =  data['smbInfo'] ||[];
         }
     })
-     this.activatedRoute.queryParams.subscribe((params: Params) => {
-      if (!params['type']) {
-          this.router.navigate(['/smb'], { queryParams: { type: this.smbsList[0]} })
-      } else {
-        this.smbSelected = params['type']
-        this.getSMBDetails();
-      }
-  })
-
-  this.setRefreshInterval();
+    this.smbSelected = this.smbsList[0];
+    this.getSMBDetails();
   }
 
   setRefreshInterval() {
@@ -163,6 +155,10 @@ dash
      
   }
 
+  changeDevice(value) {
+    this.getSMBDetails();
+
+  }
   getSMBDetails() {
     this.subscriptions['getSMBDetails'] = this.api.getSMBDetails(this.smbSelected).subscribe(res=>{
       this.smbData = res.message;

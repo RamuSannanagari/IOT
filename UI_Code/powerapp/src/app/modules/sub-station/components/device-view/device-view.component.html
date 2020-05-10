@@ -2,7 +2,7 @@
   <div class="">
     <div class="panel-heading row align-items-center overview-head">
       <div class="col-3">
-          <h4 class="text-primary mt-2 d-inline-block">Overview </h4>
+          <h4 class="mt-2 d-inline-block">Overview </h4>
       </div>
       <div class="col-4">
        
@@ -12,8 +12,8 @@
 
     </div>
     <div class="select-cntr">
-      <ngx-select [items]="subSationList" [placeholder]="'Select Substation'" [(ngModel)]="selectedSubstation" (select)="changeSubStation($event)"></ngx-select>
-      <ngx-select [items]="devicesList" [placeholder]="'Select Device'" [(ngModel)]="selectedDevice" (select)="changeDevice($event)"></ngx-select>
+      <div class="select"><label>Substation: </label><ngx-select [items]="subSationList" [placeholder]="'Select Substation'" [(ngModel)]="selectedSubstation" (select)="changeSubStation($event)"></ngx-select></div>
+      <div class="select"><label>Device: </label><ngx-select [items]="devicesList" [placeholder]="'Select Device'" [(ngModel)]="selectedDevice" (select)="changeDevice($event)"></ngx-select></div>
     </div>
     <div class="panel-body">
 
@@ -111,6 +111,58 @@
                       </ng-template>
               </ngx-charts-line-chart>
               </div> 
+<!-- 
+              <div >
+                <h4  class="m-b-10 mt-2 text-primary" >Power Consumption</h4>
+
+                <div class="row">
+                  <div class="col-xs-12 col-12 col-md-4 form-group">
+                    <input type="text"
+                           placeholder="Datepicker"
+                           class="form-control"
+                           bsDatepicker
+                           [maxDate]="maxDate"
+                           [(ngModel)]="selectedDate"
+                           (bsValueChange)="onDateChange($event)"
+                           [bsConfig]="{containerClass: 'theme-red'}">
+                  </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-12 col-sm-6 col-md-3 ">
+                      <div class="card card-green">
+                      <div>
+                        Consumption
+                      </div>
+                      <div class="val">90 </div>
+                    </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3">
+                      <div class="card card-blue">
+                      <div>Average Voltage
+                    </div>
+                    <div class="val">90</div>
+                    </div>
+
+                  </div>
+                    <div class="col-12 col-sm-6 col-md-3"> 
+                      <div class="card card-yellow">
+                      <div>Average Current
+                    </div>
+                    <div class="val">90</div>
+                    </div>
+                  </div>
+                    <div class="col-12 col-sm-6 col-md-3 ">
+                      <div class="card card-red">
+                      <div> 
+                      Average Pf
+                    </div>
+                    <div class="val">90</div>
+                    </div>
+                  </div>
+                   
+                  </div>
+              </div> -->
             
               <h4  class="m-b-10 mt-2 text-primary" *ngIf="data">Device Status</h4>
               <div class="table-ctnr row m-t-10" *ngIf="data">

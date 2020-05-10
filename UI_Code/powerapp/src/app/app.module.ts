@@ -10,6 +10,7 @@ import { SharedModule } from './shared/shared.module';
 import { ProtectedComponent } from './components/protected/protected.component';
 import { LoaderIntercepterService } from './interceptors/loader-intercepter.service';
 import { NgxSelectModule } from 'ngx-select-ex';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 @NgModule({
     declarations: [
         AppComponent,
@@ -23,7 +24,8 @@ import { NgxSelectModule } from 'ngx-select-ex';
         HttpClientModule,
         NgxChartsModule,
         SharedModule,
-        NgxSelectModule
+        NgxSelectModule,
+        BsDatepickerModule.forRoot()
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: LoaderIntercepterService, multi: true }

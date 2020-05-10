@@ -3,7 +3,7 @@
   <app-header></app-header>
   <app-loader></app-loader>
   <div class="pt-3">
-    <div class="sidenav"  *ngIf="user.category == 'ttd'">
+    <div class="sidenav" [ngClass]="{'ttd-nav':user.category == 'ttd'}">
       <div class="sidebar-header">
         <div class="user-pic">
           <img class="img-responsive img-rounded" src="/assets/images/user.jpg" alt="User picture">
@@ -12,10 +12,10 @@
           <span class="user-name">
             <strong>{{user?.username}}</strong>
           </span>
-          <span class="user-status">
+          <!-- <span class="user-status">
             <i class="fa fa-circle"></i>
             <span>Online</span>
-          </span>
+          </span> -->
           
         </div>
       </div>
@@ -30,6 +30,18 @@
         <li class="nav-item"  *ngIf="user.category == 'ttd'">
           <a routerLink="/station/street-light" routerLinkActive="active">
             Street Lights
+          </a>
+          
+        </li>
+        <li class="nav-item"  *ngIf="user.category == 'other'">
+          <a routerLink="/smb" routerLinkActive="active">
+            SMB
+          </a>
+          
+        </li>
+        <li class="nav-item"  *ngIf="user.category == 'other'">
+          <a routerLink="/tracker/list" routerLinkActive="active">
+            Tracker
           </a>
           
         </li>

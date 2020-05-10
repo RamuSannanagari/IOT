@@ -18,33 +18,13 @@
     <div class="d-flex w-100 justify-content-space-between align-items-center">
 
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item" routerLink="/station/device" routerLinkActive="active" *ngIf="user.category == 'ttd'">
-        33/11 KV Sub Station
+      <li class="nav-item app-name">
+       Smart Trak
       </li>
-      <li class="nav-item" routerLink="/station/distribution" routerLinkActive="active" *ngIf="user.category == 'ttd'">
-        Distribution Transformer
-      </li>
-      <li class="nav-item" routerLink="/station/plant" routerLinkActive="active" *ngIf="user.category == 'ttd'">
-        Solar Plant and  WindMill
-      </li>
-      <li class="nav-item" routerLink="/station/street-light" routerLinkActive="active" *ngIf="user.category == 'ttd'">
-        Street Light
-      </li>
-      <ng-container *ngIf="user.category == 'other'">
-        <li class="nav-item" routerLink="/smb" routerLinkActive="active">SMB
-        </li>
-        <li class="nav-item" routerLink="/tracker/list" routerLinkActive="active">
-          Tracker
-        </li>
-      </ng-container>
+     
       
     </ul>
-    <div>
-      <ul class="list-none text-light d-flex flex-row">
-        <li class="pr-3">Hi, {{user?.username}} </li>
-        <li><i title="logout" (click)="logout()" class="fas fa-sign-out-alt" aria-hidden="true"></i></li>
-      </ul>
-    </div>
+  
 
     </div>
   

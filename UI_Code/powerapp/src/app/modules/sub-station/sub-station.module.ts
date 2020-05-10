@@ -10,6 +10,7 @@ import { DistributionTransformerComponent } from './distribution-transformer/dis
 import { RouterModule } from '@angular/router';
 import { SubStationRoutingModule } from './sub-station-routing.module';
 import { NgxSelectModule } from 'ngx-select-ex';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { NgxSelectModule } from 'ngx-select-ex';
     NgxChartsModule,
     RouterModule,
     SubStationRoutingModule,
-    NgxSelectModule
+    NgxSelectModule,
+    BsDatepickerModule
   ],
   exports:[OverviewComponent, DeviceViewComponent,SolarWindmillPlantComponent,StreetLightComponent,DistributionTransformerComponent]
 })
