@@ -9,6 +9,7 @@ import { SolarWindmillPlantComponent } from './solar-windmill-plant/solar-windmi
 import { DistributionTransformerComponent } from './distribution-transformer/distribution-transformer.component';
 import { RouterModule } from '@angular/router';
 import { SubStationRoutingModule } from './sub-station-routing.module';
+import { NgxSelectModule } from 'ngx-select-ex';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { SubStationRoutingModule } from './sub-station-routing.module';
     ReactiveFormsModule,
     NgxChartsModule,
     RouterModule,
-    SubStationRoutingModule
+    SubStationRoutingModule,
+    NgxSelectModule
   ],
   exports:[OverviewComponent, DeviceViewComponent,SolarWindmillPlantComponent,StreetLightComponent,DistributionTransformerComponent]
 })
