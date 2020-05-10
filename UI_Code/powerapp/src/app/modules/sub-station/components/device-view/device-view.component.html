@@ -4,12 +4,13 @@
       <div class="col-3">
           <h4 class="text-primary mt-2 d-inline-block">OVERVIEW </h4>
       </div>
-      <div class="col-9">
+      <div class="col-4">
+        <ngx-select [items]="devicesList" [placeholder]="'Select Device'" [(ngModel)]="selectedDevice" (select)="changeDevice($event)"></ngx-select>
 
-      <select [(ngModel)]="selectedDevice" (change)="changeDevice($event.target.value)">
+      <!-- <select [(ngModel)]="selectedDevice" (change)="changeDevice($event.target.value)">
           <option value="">Select Device</option>
           <option *ngFor="let device of devicesList" [value]="device">{{device}}</option>
-        </select>
+        </select> -->
       </div>
 
       

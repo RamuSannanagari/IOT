@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { SharedModule } from './shared/shared.module';
 import { ProtectedComponent } from './components/protected/protected.component';
 import { LoaderIntercepterService } from './interceptors/loader-intercepter.service';
+import { NgxSelectModule } from 'ngx-select-ex';
 @NgModule({
     declarations: [
         AppComponent,
@@ -21,7 +22,8 @@ import { LoaderIntercepterService } from './interceptors/loader-intercepter.serv
         FormsModule,
         HttpClientModule,
         NgxChartsModule,
-        SharedModule
+        SharedModule,
+        NgxSelectModule
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: LoaderIntercepterService, multi: true }

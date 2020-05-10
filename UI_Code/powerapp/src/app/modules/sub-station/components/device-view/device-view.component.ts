@@ -89,6 +89,7 @@ subscription={};
  
   //change device callback
   changeDevice(val) {
+      console.log('val',val);
     this.setRefreshInterval();
     this.getDeviceData()
   }
