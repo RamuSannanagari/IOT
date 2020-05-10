@@ -1,5 +1,5 @@
-<header>
-  <!-- <div class="row align-items-center">
+<header [ngClass]="{'ttd-header':(user.category == 'ttd')}">
+  <div class="row align-items-center" *ngIf="user.category == 'ttd'">
     <div class="col-3">
       <a href="/">
         <img src="./assets/images/logo.png" />
@@ -13,8 +13,8 @@
       <img width="170" src="./assets/images/logo-2.png" />
 
   </div>
-  </div> -->
-  <nav class="navbar navbar-expand-lg bg-primary">
+  </div>
+  <nav class="navbar navbar-expand-lg bg-primary" *ngIf="user.category == 'other'">
     <div class="d-flex w-100 justify-content-space-between align-items-center">
 
     <ul class="navbar-nav mr-auto">

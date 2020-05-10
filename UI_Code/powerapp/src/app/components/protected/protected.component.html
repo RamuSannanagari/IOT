@@ -2,8 +2,48 @@
  
   <app-header></app-header>
   <app-loader></app-loader>
-  <div class="app-content pt-3">
+  <div class="pt-3">
+    <div class="sidenav"  *ngIf="user.category == 'ttd'">
+      <div class="sidebar-header">
+        <div class="user-pic">
+          <img class="img-responsive img-rounded" src="/assets/images/user.jpg" alt="User picture">
+        </div>
+        <div class="user-info">
+          <span class="user-name">
+            <strong>{{user?.username}}</strong>
+          </span>
+          <span class="user-status">
+            <i class="fa fa-circle"></i>
+            <span>Online</span>
+          </span>
+          
+        </div>
+      </div>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item"  *ngIf="user.category == 'ttd'">
+          <a routerLink="/station/device" routerLinkActive="active">
+            Sub Stations
+          </a>
+          
+        </li>
+       
+        <li class="nav-item"  *ngIf="user.category == 'ttd'">
+          <a routerLink="/station/street-light" routerLinkActive="active">
+            Street Lights
+          </a>
+          
+        </li>
+        <li>
+          <a href="javascript:void(0)" (click)="logout()">Logout</a>
+        </li>
+      
+        
+      </ul>
     
+    </div>
+    <div class="main" [ngClass]="{'ttd-main':(user.category == 'ttd')}">
       <router-outlet></router-outlet>
+    </div>
+      
   </div>
 </div>

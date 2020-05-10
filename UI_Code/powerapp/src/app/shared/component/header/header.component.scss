@@ -1,6 +1,14 @@
 header{
     background-color: var(--header-color);
     margin: 0px;
+    &.ttd-header{
+        height: 150px;
+        background-color: #fff;
+        border-bottom: 1px solid #c8ced3;
+        position: fixed;
+        width: 100%;
+        z-index: 1000;
+    }
 }
 
   
