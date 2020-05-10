@@ -47,8 +47,11 @@ export class ApiService {
         return this.http.get(this.API_URL+`/search?deviceid=${id}&start_time=${today}T00:00:00&end_time=${today}T23:59:59`).pipe(catchError(this.handleError))
     }
 
-    getDevicesList() {
-        return this.http.get(this.API_URL+'/devicelist').pipe(catchError(this.handleError))
+    getDevicesList(device) {
+        return this.http.get(this.API_URL+'/ttd_sub_stations_devices_search?category_name='+device).pipe(catchError(this.handleError))
+    }
+    getSubStationList(type) {
+        return this.http.get(this.API_URL+'/ttd_sub_stations_search?category_type='+type).pipe(catchError(this.handleError))
     }
     getCheckList(){
         return this.http.get(this.MOCK_CHECKLIST_URL).pipe(catchError(this.handleError))

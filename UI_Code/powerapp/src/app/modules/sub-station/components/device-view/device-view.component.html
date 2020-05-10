@@ -1,20 +1,19 @@
 <section id="power">
   <div class="">
-    <div class="panel-heading row align-items-center">
+    <div class="panel-heading row align-items-center overview-head">
       <div class="col-3">
-          <h4 class="text-primary mt-2 d-inline-block">OVERVIEW </h4>
+          <h4 class="text-primary mt-2 d-inline-block">Overview </h4>
       </div>
       <div class="col-4">
-        <ngx-select [items]="devicesList" [placeholder]="'Select Device'" [(ngModel)]="selectedDevice" (select)="changeDevice($event)"></ngx-select>
-
-      <!-- <select [(ngModel)]="selectedDevice" (change)="changeDevice($event.target.value)">
-          <option value="">Select Device</option>
-          <option *ngFor="let device of devicesList" [value]="device">{{device}}</option>
-        </select> -->
+       
       </div>
 
       
 
+    </div>
+    <div class="select-cntr">
+      <ngx-select [items]="subSationList" [placeholder]="'Select Substation'" [(ngModel)]="selectedSubstation" (select)="changeSubStation($event)"></ngx-select>
+      <ngx-select [items]="devicesList" [placeholder]="'Select Device'" [(ngModel)]="selectedDevice" (select)="changeDevice($event)"></ngx-select>
     </div>
     <div class="panel-body">
 
