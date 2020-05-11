@@ -2,7 +2,7 @@
  
   <app-header></app-header>
   <app-loader></app-loader>
-  <div class="pt-3">
+  <div class="">
     <div class="sidenav" *ngIf="user.category == 'ttd'" [ngClass]="{'ttd-nav':user.category == 'ttd'}">
       <div class="sidebar-header">
         <div class="user-pic">
@@ -54,7 +54,7 @@
     
     </div>
    
-    <div class="main" [ngClass]="{'ttd-main':(user.category == 'ttd')}">
+    <div class="main " [ngClass]="{'ttd-main':(user.category == 'ttd')}">
       <div class="smb-menu" *ngIf="user.category == 'other'">
         <ul class="list-none pl-0 menu-list mb-0">
           <li >

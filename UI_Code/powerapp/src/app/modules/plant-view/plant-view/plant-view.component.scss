@@ -1,0 +1,103 @@
+.plant-chain{
+    position: relative;
+    margin: 0 3%;
+    > div{
+        width: 270px;
+        z-index: 2;
+        position: relative;
+    }
+    .arrow-head{
+        position: absolute;
+        top: 60px;
+        font-size: 20px;
+        font-weight: bold;
+        color: var(--danger);
+    }
+    .l-170{
+        left: 225px;
+    }
+    .line{
+        position: absolute;
+    min-height: 2px;
+    width: 100%;
+    background: var(--danger);
+    top: 75px;
+}
+    
+    .grey-card{
+        height: 140px;
+        width: 200px;
+        background: #ddd;
+        border-radius: 16px;
+        margin-bottom: 10px;
+        display: flex;
+        padding: 15px;
+        align-items: center;
+        > img{
+            width: 100%;
+    height: auto;
+        }
+    }
+    .output{
+        
+        top: 15px;
+        position: relative;
+        width: 120px;
+        .danger-box{
+            border: 2px solid var(--danger);
+            color: var(--danger);
+            padding: 10px;
+            font-weight: bold;
+            width: 120px;
+            background: #fff;
+        }
+    }
+    dl {
+        width: 100%;
+        overflow: hidden;
+        
+        padding: 0;
+        margin: 0
+      }
+      dt {
+        float: left;
+        width: 50%;
+        color: gray;
+        /* adjust the width; make sure the total of both is 100% */
+        
+        padding: 0;
+        margin: 0;
+        font-weight: 400;
+
+      }
+      dd {
+        float: left;
+        width: 50%;
+        /* adjust the width; make sure the total of both is 100% */
+        
+        padding: 0;
+        margin: 0;
+        &:after {
+            content: "";
+            clear: both;
+        }
+
+        
+      }
+    
+}
+.plant-name{
+    margin: 0 20%;
+    text-align: center;
+    padding: 10px;
+    background: #ddd;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    margin-top: 10px;
+    color: var(--primary);
+    
+    font-size: 1.5em;
+}
+.gray{
+    color: gray;
+}

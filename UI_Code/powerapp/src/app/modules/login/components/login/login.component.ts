@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
                       this.router.navigate([  'station']);
                     }
                     else{
-                      this.router.navigate([  'smb']);
+                      this.router.navigate([  'plant-view']);
                     }
                     
                 },

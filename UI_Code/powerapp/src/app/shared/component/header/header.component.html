@@ -17,9 +17,28 @@
   <nav class="navbar navbar-expand-lg bg-primary" *ngIf="user.category == 'other'">
     <div class="d-flex w-100 justify-content-space-between align-items-center">
 
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav  d-flex justify-content-between w-100">
       <li class="nav-item app-name">
-       Smart Trak
+       <!-- Smart Trak -->
+       <a href="/">
+        <img width="112" src="./assets/images/tracker-logo.png" />
+      </a>
+       
+      </li>
+      <li class="d-flex align-items-center relative">
+        <div class="user-name d-flex align-items-center">
+          <i class="fas fa-user"></i> &nbsp;
+          <span>Hi,&nbsp;{{user?.username}} &nbsp;<i class="fas fa-sort-down"></i></span>  
+          <ul class="list-none user-content">
+            <li (click)="logout()">Logout</li>
+          </ul>
+        </div>
+        
+        
+        
+      
+        
+        
       </li>
      
       
