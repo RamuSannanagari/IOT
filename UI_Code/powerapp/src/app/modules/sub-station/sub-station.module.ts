@@ -11,10 +11,11 @@ import { RouterModule } from '@angular/router';
 import { SubStationRoutingModule } from './sub-station-routing.module';
 import { NgxSelectModule } from 'ngx-select-ex';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { SubstationComponent } from './sub-station/substation/substation.component';
 
 
 @NgModule({
-  declarations: [OverviewComponent, DeviceViewComponent,SolarWindmillPlantComponent,StreetLightComponent,DistributionTransformerComponent],
+  declarations: [SubstationComponent,OverviewComponent, DeviceViewComponent,SolarWindmillPlantComponent,StreetLightComponent,DistributionTransformerComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -25,6 +26,6 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     NgxSelectModule,
     BsDatepickerModule
   ],
-  exports:[OverviewComponent, DeviceViewComponent,SolarWindmillPlantComponent,StreetLightComponent,DistributionTransformerComponent]
+  exports:[SubstationComponent,OverviewComponent, DeviceViewComponent,SolarWindmillPlantComponent,StreetLightComponent,DistributionTransformerComponent]
 })
 export class SubStationModule { }

@@ -1,1 +1,44 @@
-<p>rmu WIP!</p>
+<section class="rmu-content">
+    <div class="row align-items-center rmu-head">
+      <div class="col-12"> <h4>RMU 01</h4></div>
+      <!-- <div class="col-6 text-right">Last Updated Timestamp: {{trackerDetails?.Timestamp | date:'dd-MM-yyyy HH:MM:SS'}}</div> -->
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-6  ">
+            <div class="bg">
+            <div class="rmu-header border-btm">RMU</div>
+            <div class="list-view">
+                <div class="item" *ngFor="let rmu of rmuList">
+                    <div class="text-center border-btm">{{rmu.name}}</div>
+                    <div class="circle" [ngStyle]="{background:rmu.status?'green':'red'}"></div>
+                    <div>{{rmu.status?'Healthy':'OFF'}}</div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="col-3 ">
+            <div class="bg">
+            <div class="rmu-header border-btm">INV TRANSFO 1.1</div>
+            <div class="list-view">
+                <div class="item inv" *ngFor="let rmu of invList">
+                    <div class="text-center border-btm">{{rmu.name}}</div>
+                    <div class="circle" [ngStyle]="{background:rmu.status?'green':'red'}"></div>
+                    <div>{{rmu.status?'Healthy':'OFF'}}</div>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="col-3 ">
+            <div class="bg">
+            <div class="rmu-header border-btm">INV TRANSFO 1.2</div>
+            <div class="list-view">
+                <div class="item inv" *ngFor="let rmu of invList">
+                    <div class="text-center border-btm">{{rmu.name}}</div>
+                    <div class="circle" [ngStyle]="{background:rmu.status?'green':'red'}"></div>
+                    <div>{{rmu.status?'Healthy':'OFF'}}</div>
+                </div>
+            </div>
+        </div></div>
+    </div>
+    </section>

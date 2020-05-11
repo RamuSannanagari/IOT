@@ -18,7 +18,7 @@ export class RedirectGuardService implements CanActivate {
         this.router.navigate(['/station']);
         return true;
     } else if(currentUser && currentUser.category == 'other') {
-        this.router.navigate(['/smb']);
+        this.router.navigate(['/rmu']);
         return true;
     }
      // not logged in so redirect to login page with the return url

@@ -5,6 +5,7 @@ import { DeviceViewComponent } from './components/device-view/device-view.compon
 import { DistributionTransformerComponent } from './distribution-transformer/distribution-transformer.component';
 import { StreetLightComponent } from './street-light/street-light.component';
 import { SolarWindmillPlantComponent } from './solar-windmill-plant/solar-windmill-plant.component';
+import { SubstationComponent } from './sub-station/substation/substation.component';
 
 
 
@@ -12,8 +13,8 @@ const routes: Routes = [{
     path: '',
     component: OverviewComponent,
     children:[{
-      path:'device',
-      component:DeviceViewComponent
+      path:'substation',
+      component:SubstationComponent
     },{
         path:'distribution',
         component: DistributionTransformerComponent,
@@ -25,7 +26,7 @@ const routes: Routes = [{
         component: SolarWindmillPlantComponent,
       },{
         path:'**',
-        redirectTo:'\device'
+        redirectTo:'\substation'
     }]
   
   }];

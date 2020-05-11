@@ -12,7 +12,7 @@
 
     </div>
     <div class="select-cntr">
-      <div class="select"><label>Substation: </label><ngx-select [items]="subSationList" [placeholder]="'Select Substation'" [(ngModel)]="selectedSubstation" (select)="changeSubStation($event)"></ngx-select></div>
+      <div class="select"><label>{{type==1?'Substation':'Street Light'}}: </label><ngx-select [items]="subSationList" [placeholder]="type==1?'Select Substation':'Select Street Light'" [(ngModel)]="selectedSubstation" (select)="changeSubStation($event)"></ngx-select></div>
       <div class="select"><label>Device: </label><ngx-select [items]="devicesList" [placeholder]="'Select Device'" [(ngModel)]="selectedDevice" (select)="changeDevice($event)"></ngx-select></div>
     </div>
     <div class="panel-body">
@@ -173,12 +173,7 @@
                         <thead>
                         <tr>
                           <th scope="col" *ngFor="let cols of aggTableHeaders">
-                            {{cols=='date'?'Date':''}}
-                            {{cols=='deviceId'?'Device Id':''}}
-                            {{cols=='avgpf'?'Average Pf':''}}
-                            {{cols=='avgvol'?'Average Voltage':''}}
-                            {{cols=='current'?'Average Current':''}}
-                            {{cols=='power_consumption'?'Power Consumption':''}}
+                            {{cols=='power_consumption'?'Power Consumption':cols}}
                           </th>
                         </tr>
                         </thead>

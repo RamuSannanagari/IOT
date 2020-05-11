@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { ExportToCsv } from 'export-to-csv';
 @Component({
@@ -9,7 +9,7 @@ import { ExportToCsv } from 'export-to-csv';
 export class DeviceViewComponent implements OnInit {
 
  
-
+@Input() type :number;
   data: any;
   hoveredDate;
   tableHeaders: any;
@@ -72,8 +72,9 @@ aggTableHeaders=[];
 
   //get substation list
   getSubstationList() {
-    this.subscription['getsubstationList'] = this.apiService.getSubStationList('SUB_STATIONS').subscribe(res=>{
-        this.subSationList = res.SUB_STATIONS;
+    let key = this.type==1?'SUB_STATIONS':'STREET_LIGHT'
+    this.subscription['getsubstationList'] = this.apiService.getSubStationList(key).subscribe(res=>{
+        this.subSationList = res[key];
     })
   }
 
@@ -126,7 +127,7 @@ aggTableHeaders=[];
     }
 
     onDateChange(date) {
-        this.getDeviceData();
+      this.getAggregate();
     }
   
   getDeviceData() {
