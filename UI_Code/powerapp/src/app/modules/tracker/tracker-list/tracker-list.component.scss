@@ -2,10 +2,24 @@
     padding: 20px 30px;
 }
 .custom-table{
-    tbody{
+    border:1px solid var(--line-color);
+    text-align: center;
+     thead{
+       
+         th {
+           position: sticky;
+           top: -1px;
+           background:var(--primary) !important;
+           color:#fff;
+         }
+       }
+       tbody{
         tr{
             &:hover{
                 cursor: pointer;
+            }
+            &:nth-child(even){
+                background-color: var(--primary-light);
             }
         }
     }

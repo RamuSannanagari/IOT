@@ -3,7 +3,7 @@
   <app-header></app-header>
   <app-loader></app-loader>
   <div class="pt-3">
-    <div class="sidenav" [ngClass]="{'ttd-nav':user.category == 'ttd'}">
+    <div class="sidenav" *ngIf="user.category == 'ttd'" [ngClass]="{'ttd-nav':user.category == 'ttd'}">
       <div class="sidebar-header">
         <div class="user-pic">
           <img class="img-responsive img-rounded" src="/assets/images/user.jpg" alt="User picture">
@@ -53,7 +53,72 @@
       </ul>
     
     </div>
+   
     <div class="main" [ngClass]="{'ttd-main':(user.category == 'ttd')}">
+      <div class="smb-menu" *ngIf="user.category == 'other'">
+        <ul class="list-none pl-0 menu-list mb-0">
+          <li >
+            <a routerLink="/plant-view" routerLinkActive="active">
+              Plant View
+            </a>
+            
+          </li>
+          <li >
+            <a routerLink="/sld" routerLinkActive="active">
+              SLD
+            </a>
+            
+          </li>
+          <li >
+            <a routerLink="/layout" routerLinkActive="active">
+              Layout
+            </a>
+            
+          </li>
+          <li >
+            <a routerLink="/power" routerLinkActive="active">
+              Power
+            </a>
+            
+          </li>
+          <li >
+            <a routerLink="/ht-panels" routerLinkActive="active">
+              HT-Panels
+            </a>
+            
+          </li>
+          <li >
+            <a routerLink="/inverters" routerLinkActive="active">
+              Inverters
+            </a>
+            
+          </li>
+          <li >
+            <a routerLink="/rmu" routerLinkActive="active">
+              Rmu
+            </a>
+            
+          </li>
+          <li   >
+            <a routerLink="/smb" routerLinkActive="active">
+              Smb
+            </a>
+            
+          </li>
+          <li >
+            <a routerLink="/tracker/list" routerLinkActive="active">
+              Trackers
+            </a>
+            
+          </li>
+          <li >
+            <a routerLink="/alarms" routerLinkActive="active">
+              Alarms
+            </a>
+            
+          </li>
+        </ul>
+      </div>
       <router-outlet></router-outlet>
     </div>
       
