@@ -29,7 +29,7 @@
 
 .table-ctnr {
   width: 100%;
-  height: 450px;
+  max-height: 450px;
   overflow-x: auto;
   margin-bottom: 1rem;
   margin-top: 1rem;
@@ -39,6 +39,7 @@
   // -ms-transform: rotateX(180deg);
   // -webkit-transform: rotateX(180deg);
   > table {
+    margin-bottom: 0;
     thead{
       
       th {
@@ -46,7 +47,14 @@
         top: -1px;
         background: var(--primary) !important;
         color:#fff;
+        text-transform: capitalize;
+        white-space: nowrap;
+        text-align: center;
       }
+    }
+    td {
+      white-space: nowrap;
+      text-align: center;
     }
     // transform: rotateX(180deg);
     // -ms-transform: rotateX(180deg);
@@ -63,6 +71,9 @@
 }
 .loading {
   width: calc(100% - 16.66666667%);
+}
+.no-records {
+  font-size: 14px;
 }
 .mw-200{
   min-width: 200px;

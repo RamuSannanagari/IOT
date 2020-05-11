@@ -16,7 +16,7 @@
      
   }
   .ttd-nav {
-    top:150px !important;
+    top:150px;
   }
   .sidenav {
     height: 100%;
@@ -33,7 +33,7 @@
       &:hover,
       &.active{
         color: #f1f1f1;
-        background: var(--primary) !important;
+        background: #b22f30 !important;
       }
     }
   }
@@ -55,9 +55,8 @@
   
   .main {
     margin-top:50px;
-    margin-left: 200px;
     &.ttd-main{
-      /* Same as the width of the sidenav */
+      margin-left: 200px; /* Same as the width of the sidenav */
       margin-top: 150px;
     }
     
