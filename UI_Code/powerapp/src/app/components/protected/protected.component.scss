@@ -24,7 +24,7 @@
     position: fixed;
     color: #b8bfce;
     z-index: 1;
-    top: 40px;
+    top: 150px;
     left: 0;
     background-color: #31353D;
     overflow-x: hidden;
@@ -57,7 +57,7 @@
     margin-top:50px;
     &.ttd-main{
       margin-left: 200px; /* Same as the width of the sidenav */
-      margin-top: 150px;
+      margin-top: 150px !important;
     }
     
     
