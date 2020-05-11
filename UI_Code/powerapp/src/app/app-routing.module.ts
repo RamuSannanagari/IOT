@@ -8,6 +8,14 @@ import { RedirectGuardService } from './helpers/redirect-guard.service';
 
 
 
+
+
+
+
+
+
+
+
 const routes: Routes = [{
   path: '',
   component: ProtectedComponent,
@@ -29,6 +37,41 @@ const routes: Routes = [{
   canActivate: [AuthOthersGuard],
   runGuardsAndResolvers: 'always'
 },
+
+{path:'plant-view',loadChildren:'./modules/plant-view/plant-view.module#PlantViewModule',
+canActivate: [AuthOthersGuard],
+runGuardsAndResolvers: 'always'
+},
+{path:'sld',loadChildren:'./modules/sld/sld.module#SldModule',
+canActivate: [AuthOthersGuard],
+runGuardsAndResolvers: 'always'
+},
+{path:'layout',loadChildren:'./modules/layout/layout.module#LayoutModule',
+canActivate: [AuthOthersGuard],
+runGuardsAndResolvers: 'always'
+},
+{path:'power',loadChildren:'./modules/power/power.module#PowerModule',
+canActivate: [AuthOthersGuard],
+runGuardsAndResolvers: 'always'
+},
+{path:'ht-panels',loadChildren:'./modules/ht-panels/ht-panels.module#HtPanelsModule',
+canActivate: [AuthOthersGuard],
+runGuardsAndResolvers: 'always'
+},
+{path:'inverters',loadChildren:'./modules/inverters/inverters.module#InvertersModule',
+canActivate: [AuthOthersGuard],
+runGuardsAndResolvers: 'always'
+},
+{path:'rmu',loadChildren:'./modules/rmu/rmu.module#RmuModule',
+canActivate: [AuthOthersGuard],
+runGuardsAndResolvers: 'always'
+},
+
+{path:'alarms',loadChildren:'./modules/alarms/alarms.module#AlarmsModule',
+canActivate: [AuthOthersGuard],
+runGuardsAndResolvers: 'always'
+},
+
 { path : '' , pathMatch: 'full' , redirectTo : '' , canActivate : [RedirectGuardService]}, 
   
 //   {

@@ -11,10 +11,12 @@ import { ProtectedComponent } from './components/protected/protected.component';
 import { LoaderIntercepterService } from './interceptors/loader-intercepter.service';
 import { NgxSelectModule } from 'ngx-select-ex';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+
 @NgModule({
     declarations: [
         AppComponent,
-        ProtectedComponent
+        ProtectedComponent,
+        
     ],
     imports: [
         BrowserModule,
