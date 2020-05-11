@@ -2,13 +2,12 @@
 <section class="tracker-content">
   
   <div class="tracker-route">
-    <div class="select-cntr">
-      <div class="select"><label>Device: </label><ngx-select [items]="smbsList" [placeholder]="'Select Device'" [(ngModel)]="smbSelected" (select)="changeDevice($event)"></ngx-select></div>
-      
-    </div>
-    <div class="row mt-3">
     
-      <div class="col-12">
+    <div class="row mt-3">
+      <div class="col-sm-2 col-xs-12">
+        <li class="list-group-item" *ngFor="let smb of smbsList" [ngClass]="{'active':isLinkActive(smb)}" (click)="navigate(smb)" >{{smb}}</li>
+      </div>
+      <div class="col-sm-10 col-xs-12">
         <div class="row">
           <div class="col-md-7">
             <div class="card card-blue">
