@@ -112,7 +112,7 @@
               </ngx-charts-line-chart>
               </div>  -->
 
-              <div *ngIf="selectedDevice">
+              <div style="margin-top:2rem"  *ngIf="selectedDevice">
                 <h4  class="m-b-10 mt-2 text-primary" >Power Consumption</h4>
 
                 <div class="row">
@@ -127,7 +127,7 @@
                            [bsConfig]="{containerClass: 'theme-red',showPreviousMonth: true}">
                   </div>
                   <div class="col-xs-12 col-16 col-md-8 text-right">
-                    <button class="btn btn-primary" (click)="export()">Export CSV</button>
+                    <button class="btn btn-primary" *ngIf="getAgrrigateHis && getAgrrigateHis.length>0" (click)="export()">Export CSV</button>
                   </div>
                  
                   </div>
@@ -193,7 +193,7 @@
                     </div>
                     <div class="no-records" *ngIf="getAgrrigateHis.length==0">No records for selected date</div>
               </div>
-            
+            <div style="margin-top:2rem">
               <h4  class="m-b-10 mt-2 text-primary" *ngIf="data">Device Status</h4>
               <div class="table-ctnr row m-t-10" *ngIf="data">
                   
@@ -212,6 +212,7 @@
                   </tbody>
                 </table>
               </div>
+            </div>
       </ng-template>
     </div>
   </div>
