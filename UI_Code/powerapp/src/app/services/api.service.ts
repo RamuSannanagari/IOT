@@ -57,6 +57,10 @@ export class ApiService {
         return this.http.get(this.MOCK_CHECKLIST_URL).pipe(catchError(this.handleError))
     }
 
+    getAggregate(device,start,end) {
+        return this.http.get(this.API_URL+'/ttd_device_aggregate_data?deviceid='+device+'&start_date='+start+'&end_date='+end).pipe(catchError(this.handleError))
+    }
+
     getSMBList() {
         return this.http.get(this.API_URL+'/smb_devicelist').pipe(catchError(this.handleError))
     }

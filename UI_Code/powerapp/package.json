@@ -25,6 +25,7 @@
     "bootstrap": "^4.4.1",
     "core-js": "^2.5.4",
     "d3": "^5.15.0",
+    "export-to-csv": "^0.2.1",
     "express": "^4.15.4",
     "ngx-bootstrap": "^5.6.1",
     "ngx-mask": "^8.1.7",

@@ -25,11 +25,11 @@
           </div> -->
       </ng-container>
       <ng-template #elsTpl>
-        <div *ngIf="data" class="device-details">
+        <!-- <div *ngIf="data" class="device-details">
             <div>Device Name : <b>{{data[0]?.deviceName}}</b></div>
             <div>Device id : <b>{{data[0]?.deviceId}}</b></div>
-        </div>
-              <div class="chart" *ngIf="rphvolData?.length">
+        </div> -->
+              <!-- <div class="chart" *ngIf="rphvolData?.length">
                   <div ><b>Voltage</b></div>
                   <ngx-charts-line-chart
                       [results]="rphvolData"
@@ -110,25 +110,29 @@
                           <span>{{tickFormatting(model[0].name)}}: {{model[0].value}}</span>
                       </ng-template>
               </ngx-charts-line-chart>
-              </div> 
-<!-- 
-              <div >
+              </div>  -->
+
+              <div style="margin-top:2rem"  *ngIf="selectedDevice">
                 <h4  class="m-b-10 mt-2 text-primary" >Power Consumption</h4>
 
                 <div class="row">
-                  <div class="col-xs-12 col-12 col-md-4 form-group">
+                  <div class="col-xs-12 col-12 col-md-4 ">
                     <input type="text"
                            placeholder="Datepicker"
                            class="form-control"
-                           bsDatepicker
+                           bsDaterangepicker
                            [maxDate]="maxDate"
                            [(ngModel)]="selectedDate"
                            (bsValueChange)="onDateChange($event)"
-                           [bsConfig]="{containerClass: 'theme-red'}">
+                           [bsConfig]="{containerClass: 'theme-red',showPreviousMonth: true}">
                   </div>
+                  <div class="col-xs-12 col-16 col-md-8 text-right">
+                    <button class="btn btn-primary" *ngIf="getAgrrigateHis && getAgrrigateHis.length>0" (click)="export()">Export CSV</button>
+                  </div>
+                 
                   </div>
 
-                  <div class="row">
+                  <!-- <div class="row">
                     <div class="col-12 col-sm-6 col-md-3 ">
                       <div class="card card-green">
                       <div>
@@ -161,9 +165,35 @@
                     </div>
                   </div>
                    
-                  </div>
-              </div> -->
-            
+                  </div> -->
+
+                  <div class="table-ctnr row m-t-10" *ngIf="getAgrrigateHis && getAgrrigateHis.length>0">
+                  
+                    <table class="table table-striped" >
+                        <thead>
+                        <tr>
+                          <th scope="col" *ngFor="let cols of aggTableHeaders">
+                            {{cols=='date'?'Date':''}}
+                            {{cols=='deviceId'?'Device Id':''}}
+                            {{cols=='avgpf'?'Average Pf':''}}
+                            {{cols=='avgvol'?'Average Voltage':''}}
+                            {{cols=='current'?'Average Current':''}}
+                            {{cols=='power_consumption'?'Power Consumption':''}}
+                          </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let row of getAgrrigateHis">
+                          
+                          
+                          <td *ngFor="let cols of aggTableHeaders"  [ngClass]="{'mw-200':(cols == 'tStamp' || cols == 'time' )}">{{ row[cols] }}</td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="no-records" *ngIf="getAgrrigateHis.length==0">No records for selected date</div>
+              </div>
+            <div style="margin-top:2rem">
               <h4  class="m-b-10 mt-2 text-primary" *ngIf="data">Device Status</h4>
               <div class="table-ctnr row m-t-10" *ngIf="data">
                   
@@ -182,6 +212,7 @@
                   </tbody>
                 </table>
               </div>
+            </div>
       </ng-template>
     </div>
   </div>

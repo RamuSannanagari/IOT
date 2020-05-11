@@ -16,7 +16,7 @@
      
   }
   .ttd-nav {
-    top:150px !important;
+    top:150px;
   }
   .sidenav {
     height: 100%;
@@ -24,7 +24,7 @@
     position: fixed;
     color: #b8bfce;
     z-index: 1;
-    top: 40px;
+    top: 150px;
     left: 0;
     background-color: #31353D;
     overflow-x: hidden;
@@ -33,7 +33,7 @@
       &:hover,
       &.active{
         color: #f1f1f1;
-        background: var(--primary) !important;
+        background: #b22f30 !important;
       }
     }
   }
